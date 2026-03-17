@@ -1,0 +1,118 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client"                  
+  output   = "../src/generated/prisma-client"  
+  moduleFormat = "esm"                             
+}
+
+model User {
+  id              String   @id @default(cuid())
+  email           String   @unique
+  passwordHash    String?  
+  name            String?
+  avatarUrl       String?
+  timezone        String   @default("UTC")
+  preferences     Json     @default("{}")   
+  isVerified      Boolean  @default(false)
+  lastLoginAt     DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  refreshTokens   RefreshToken[]
+  tasks           Task[]
+  notes           Note[]
+  //habits          Habit[]
+  //calendarEvents  CalendarEvent[]
+
+  @@index([email])
+  @@map("users")
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  hashedToken String
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId])
+  @@map("refresh_tokens")
+}
+model Note {
+  id         String   @id @default(cuid())
+  title      String?
+  content    String?
+  color      String?  @default("#ffffff")
+  isPinned   Boolean  @default(false)
+  isArchived Boolean  @default(false)
+  isDeleted  Boolean  @default(false)
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  ownerId    String
+  owner      User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  attachments Attachment[]
+
+  @@index([ownerId])
+  @@index([isPinned])
+  @@index([isArchived])
+  @@index([isDeleted])
+  @@map("notes")
+}
+
+model Attachment {
+  id           String   @id @default(cuid())
+  fileName     String
+  originalName String
+  mimeType     String
+  size         Int
+  path         String
+  url          String?
+  noteId       String
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  note         Note @relation(fields: [noteId], references: [id], onDelete: Cascade)
+
+  @@index([noteId])
+  @@map("attachments")
+}
+
+
+enum TaskStatus {
+  todo
+  in_progress
+  done
+}
+
+enum TaskPriority {
+  low
+  medium
+  high
+}
+
+model Task {
+  id          String       @id @default(cuid())
+  title       String
+  description String?
+  status      TaskStatus   @default(todo)
+  priority    TaskPriority @default(medium)
+  dueDate     DateTime?
+  isPinned    Boolean      @default(false)
+  isArchived  Boolean      @default(false)
+  isDeleted   Boolean      @default(false)
+
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  userId      String
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

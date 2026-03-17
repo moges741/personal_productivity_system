@@ -57,7 +57,10 @@ export const ModelName = {
   Attachment: 'Attachment',
   Task: 'Task',
   Habit: 'Habit',
-  HabitCompletion: 'HabitCompletion'
+  HabitCompletion: 'HabitCompletion',
+  Goal: 'Goal',
+  GoalMilestone: 'GoalMilestone',
+  GoalProgressEntry: 'GoalProgressEntry'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -186,6 +189,54 @@ export const HabitCompletionScalarFieldEnum = {
 } as const
 
 export type HabitCompletionScalarFieldEnum = (typeof HabitCompletionScalarFieldEnum)[keyof typeof HabitCompletionScalarFieldEnum]
+
+
+export const GoalScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  category: 'category',
+  status: 'status',
+  priority: 'priority',
+  progressPercentage: 'progressPercentage',
+  startDate: 'startDate',
+  targetDate: 'targetDate',
+  completedAt: 'completedAt',
+  abandonedAt: 'abandonedAt',
+  isPinned: 'isPinned',
+  isArchived: 'isArchived',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+} as const
+
+export type GoalScalarFieldEnum = (typeof GoalScalarFieldEnum)[keyof typeof GoalScalarFieldEnum]
+
+
+export const GoalMilestoneScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  isCompleted: 'isCompleted',
+  dueDate: 'dueDate',
+  order: 'order',
+  goalId: 'goalId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GoalMilestoneScalarFieldEnum = (typeof GoalMilestoneScalarFieldEnum)[keyof typeof GoalMilestoneScalarFieldEnum]
+
+
+export const GoalProgressEntryScalarFieldEnum = {
+  id: 'id',
+  percentage: 'percentage',
+  note: 'note',
+  goalId: 'goalId',
+  createdAt: 'createdAt'
+} as const
+
+export type GoalProgressEntryScalarFieldEnum = (typeof GoalProgressEntryScalarFieldEnum)[keyof typeof GoalProgressEntryScalarFieldEnum]
 
 
 export const SortOrder = {

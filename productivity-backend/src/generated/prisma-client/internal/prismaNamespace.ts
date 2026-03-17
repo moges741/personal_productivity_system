@@ -390,7 +390,10 @@ export const ModelName = {
   Attachment: 'Attachment',
   Task: 'Task',
   Habit: 'Habit',
-  HabitCompletion: 'HabitCompletion'
+  HabitCompletion: 'HabitCompletion',
+  Goal: 'Goal',
+  GoalMilestone: 'GoalMilestone',
+  GoalProgressEntry: 'GoalProgressEntry'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -406,7 +409,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "refreshToken" | "note" | "attachment" | "task" | "habit" | "habitCompletion"
+    modelProps: "user" | "refreshToken" | "note" | "attachment" | "task" | "habit" | "habitCompletion" | "goal" | "goalMilestone" | "goalProgressEntry"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -928,6 +931,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Goal: {
+      payload: Prisma.$GoalPayload<ExtArgs>
+      fields: Prisma.GoalFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GoalFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GoalFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>
+        }
+        findFirst: {
+          args: Prisma.GoalFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GoalFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>
+        }
+        findMany: {
+          args: Prisma.GoalFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>[]
+        }
+        create: {
+          args: Prisma.GoalCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>
+        }
+        createMany: {
+          args: Prisma.GoalCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GoalCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>[]
+        }
+        delete: {
+          args: Prisma.GoalDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>
+        }
+        update: {
+          args: Prisma.GoalUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>
+        }
+        deleteMany: {
+          args: Prisma.GoalDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GoalUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GoalUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>[]
+        }
+        upsert: {
+          args: Prisma.GoalUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>
+        }
+        aggregate: {
+          args: Prisma.GoalAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGoal>
+        }
+        groupBy: {
+          args: Prisma.GoalGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GoalGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GoalCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GoalCountAggregateOutputType> | number
+        }
+      }
+    }
+    GoalMilestone: {
+      payload: Prisma.$GoalMilestonePayload<ExtArgs>
+      fields: Prisma.GoalMilestoneFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GoalMilestoneFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalMilestonePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GoalMilestoneFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalMilestonePayload>
+        }
+        findFirst: {
+          args: Prisma.GoalMilestoneFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalMilestonePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GoalMilestoneFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalMilestonePayload>
+        }
+        findMany: {
+          args: Prisma.GoalMilestoneFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalMilestonePayload>[]
+        }
+        create: {
+          args: Prisma.GoalMilestoneCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalMilestonePayload>
+        }
+        createMany: {
+          args: Prisma.GoalMilestoneCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GoalMilestoneCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalMilestonePayload>[]
+        }
+        delete: {
+          args: Prisma.GoalMilestoneDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalMilestonePayload>
+        }
+        update: {
+          args: Prisma.GoalMilestoneUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalMilestonePayload>
+        }
+        deleteMany: {
+          args: Prisma.GoalMilestoneDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GoalMilestoneUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GoalMilestoneUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalMilestonePayload>[]
+        }
+        upsert: {
+          args: Prisma.GoalMilestoneUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalMilestonePayload>
+        }
+        aggregate: {
+          args: Prisma.GoalMilestoneAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGoalMilestone>
+        }
+        groupBy: {
+          args: Prisma.GoalMilestoneGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GoalMilestoneGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GoalMilestoneCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GoalMilestoneCountAggregateOutputType> | number
+        }
+      }
+    }
+    GoalProgressEntry: {
+      payload: Prisma.$GoalProgressEntryPayload<ExtArgs>
+      fields: Prisma.GoalProgressEntryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GoalProgressEntryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GoalProgressEntryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload>
+        }
+        findFirst: {
+          args: Prisma.GoalProgressEntryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GoalProgressEntryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload>
+        }
+        findMany: {
+          args: Prisma.GoalProgressEntryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload>[]
+        }
+        create: {
+          args: Prisma.GoalProgressEntryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload>
+        }
+        createMany: {
+          args: Prisma.GoalProgressEntryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GoalProgressEntryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload>[]
+        }
+        delete: {
+          args: Prisma.GoalProgressEntryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload>
+        }
+        update: {
+          args: Prisma.GoalProgressEntryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload>
+        }
+        deleteMany: {
+          args: Prisma.GoalProgressEntryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GoalProgressEntryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GoalProgressEntryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload>[]
+        }
+        upsert: {
+          args: Prisma.GoalProgressEntryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload>
+        }
+        aggregate: {
+          args: Prisma.GoalProgressEntryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGoalProgressEntry>
+        }
+        groupBy: {
+          args: Prisma.GoalProgressEntryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GoalProgressEntryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GoalProgressEntryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GoalProgressEntryCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1077,6 +1302,54 @@ export const HabitCompletionScalarFieldEnum = {
 } as const
 
 export type HabitCompletionScalarFieldEnum = (typeof HabitCompletionScalarFieldEnum)[keyof typeof HabitCompletionScalarFieldEnum]
+
+
+export const GoalScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  category: 'category',
+  status: 'status',
+  priority: 'priority',
+  progressPercentage: 'progressPercentage',
+  startDate: 'startDate',
+  targetDate: 'targetDate',
+  completedAt: 'completedAt',
+  abandonedAt: 'abandonedAt',
+  isPinned: 'isPinned',
+  isArchived: 'isArchived',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+} as const
+
+export type GoalScalarFieldEnum = (typeof GoalScalarFieldEnum)[keyof typeof GoalScalarFieldEnum]
+
+
+export const GoalMilestoneScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  isCompleted: 'isCompleted',
+  dueDate: 'dueDate',
+  order: 'order',
+  goalId: 'goalId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GoalMilestoneScalarFieldEnum = (typeof GoalMilestoneScalarFieldEnum)[keyof typeof GoalMilestoneScalarFieldEnum]
+
+
+export const GoalProgressEntryScalarFieldEnum = {
+  id: 'id',
+  percentage: 'percentage',
+  note: 'note',
+  goalId: 'goalId',
+  createdAt: 'createdAt'
+} as const
+
+export type GoalProgressEntryScalarFieldEnum = (typeof GoalProgressEntryScalarFieldEnum)[keyof typeof GoalProgressEntryScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1245,6 +1518,48 @@ export type ListEnumHabitCategoryFieldRefInput<$PrismaModel> = FieldRefInputType
 
 
 /**
+ * Reference to a field of type 'GoalCategory'
+ */
+export type EnumGoalCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GoalCategory'>
+    
+
+
+/**
+ * Reference to a field of type 'GoalCategory[]'
+ */
+export type ListEnumGoalCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GoalCategory[]'>
+    
+
+
+/**
+ * Reference to a field of type 'GoalStatus'
+ */
+export type EnumGoalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GoalStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'GoalStatus[]'
+ */
+export type ListEnumGoalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GoalStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'GoalPriority'
+ */
+export type EnumGoalPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GoalPriority'>
+    
+
+
+/**
+ * Reference to a field of type 'GoalPriority[]'
+ */
+export type ListEnumGoalPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GoalPriority[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1359,6 +1674,9 @@ export type GlobalOmitConfig = {
   task?: Prisma.TaskOmit
   habit?: Prisma.HabitOmit
   habitCompletion?: Prisma.HabitCompletionOmit
+  goal?: Prisma.GoalOmit
+  goalMilestone?: Prisma.GoalMilestoneOmit
+  goalProgressEntry?: Prisma.GoalProgressEntryOmit
 }
 
 /* Types for Logging */

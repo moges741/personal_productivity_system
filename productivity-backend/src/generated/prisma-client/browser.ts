@@ -52,3 +52,18 @@ export type Habit = Prisma.HabitModel
  * 
  */
 export type HabitCompletion = Prisma.HabitCompletionModel
+/**
+ * Model Goal
+ * 
+ */
+export type Goal = Prisma.GoalModel
+/**
+ * Model GoalMilestone
+ * 
+ */
+export type GoalMilestone = Prisma.GoalMilestoneModel
+/**
+ * Model GoalProgressEntry
+ * 
+ */
+export type GoalProgressEntry = Prisma.GoalProgressEntryModel

@@ -25,6 +25,7 @@ model User {
   tasks           Task[]
   notes           Note[]
   habits          Habit[]
+  goals           Goal[]
   //calendarEvents  CalendarEvent[]
 
   @@index([email])
@@ -142,8 +143,6 @@ model Habit {
 
   frequency       HabitFrequency @default(daily)
 
-  // For custom frequency: store days as JSON array e.g. [1,3,5] = Mon/Wed/Fri
-  // 0 = Sunday ... 6 = Saturday (JS Date.getDay() convention)
   customDays      Int[]          @default([])
 
   targetCount     Int            @default(1)    
@@ -170,7 +169,7 @@ model Habit {
   completions     HabitCompletion[]
 }
 
-// ── HabitCompletion model (add now, use later) ─────────────────────────────
+// ── HabitCompletion model (add now, use later) ──────
 model HabitCompletion {
   id          String   @id @default(cuid())
   completedAt DateTime @default(now())
@@ -178,4 +177,85 @@ model HabitCompletion {
 
   habitId     String
   habit       Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade)
+}
+
+enum GoalCategory {
+  personal
+  career
+  health
+  finance
+  learning
+  other
+}
+
+enum GoalStatus {
+  not_started
+  in_progress
+  completed
+  abandoned
+}
+
+enum GoalPriority {
+  low
+  medium
+  high
+}
+
+model Goal {
+  id                 String        @id @default(cuid())
+  title              String
+  description        String?
+
+  category           GoalCategory  @default(other)
+  status             GoalStatus    @default(not_started)
+  priority           GoalPriority  @default(medium)
+
+  // 0–100 — updated manually or auto-calculated from linked tasks/habits later
+  progressPercentage Int           @default(0)
+
+  startDate          DateTime?     
+  targetDate         DateTime?    
+
+  // Timestamps for status transitions — set automatically in service
+  completedAt        DateTime?     
+  abandonedAt        DateTime?     
+
+  isPinned           Boolean       @default(false)
+  isArchived         Boolean       @default(false)
+  isDeleted          Boolean       @default(false)
+
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+
+  userId             String
+  user               User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // ── Future relations (defined now, endpoints added later) ───────────────
+  milestones         GoalMilestone[]
+  progressHistory    GoalProgressEntry[]
+}
+
+model GoalMilestone {
+  id          String   @id @default(cuid())
+  title       String
+  isCompleted Boolean  @default(false)
+  dueDate     DateTime?
+  order       Int      @default(0)   
+
+  goalId      String
+  goal        Goal     @relation(fields: [goalId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model GoalProgressEntry {
+  id         String   @id @default(cuid())
+  percentage Int      
+  note       String?  
+
+  goalId     String
+  goal       Goal     @relation(fields: [goalId], references: [id], onDelete: Cascade)
+
+  createdAt  DateTime @default(now())
 }

@@ -49,3 +49,34 @@ export const HabitCategory = {
 } as const
 
 export type HabitCategory = (typeof HabitCategory)[keyof typeof HabitCategory]
+
+
+export const GoalCategory = {
+  personal: 'personal',
+  career: 'career',
+  health: 'health',
+  finance: 'finance',
+  learning: 'learning',
+  other: 'other'
+} as const
+
+export type GoalCategory = (typeof GoalCategory)[keyof typeof GoalCategory]
+
+
+export const GoalStatus = {
+  not_started: 'not_started',
+  in_progress: 'in_progress',
+  completed: 'completed',
+  abandoned: 'abandoned'
+} as const
+
+export type GoalStatus = (typeof GoalStatus)[keyof typeof GoalStatus]
+
+
+export const GoalPriority = {
+  low: 'low',
+  medium: 'medium',
+  high: 'high'
+} as const
+
+export type GoalPriority = (typeof GoalPriority)[keyof typeof GoalPriority]

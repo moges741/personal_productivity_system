@@ -230,6 +230,7 @@ export type UserWhereInput = {
   tasks?: Prisma.TaskListRelationFilter
   notes?: Prisma.NoteListRelationFilter
   habits?: Prisma.HabitListRelationFilter
+  goals?: Prisma.GoalListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -248,6 +249,7 @@ export type UserOrderByWithRelationInput = {
   tasks?: Prisma.TaskOrderByRelationAggregateInput
   notes?: Prisma.NoteOrderByRelationAggregateInput
   habits?: Prisma.HabitOrderByRelationAggregateInput
+  goals?: Prisma.GoalOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -269,6 +271,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   tasks?: Prisma.TaskListRelationFilter
   notes?: Prisma.NoteListRelationFilter
   habits?: Prisma.HabitListRelationFilter
+  goals?: Prisma.GoalListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -321,6 +324,7 @@ export type UserCreateInput = {
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteCreateNestedManyWithoutOwnerInput
   habits?: Prisma.HabitCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -339,6 +343,7 @@ export type UserUncheckedCreateInput = {
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutOwnerInput
   habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -357,6 +362,7 @@ export type UserUpdateInput = {
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUpdateManyWithoutOwnerNestedInput
   habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -375,6 +381,7 @@ export type UserUncheckedUpdateInput = {
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUncheckedUpdateManyWithoutOwnerNestedInput
   habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -540,6 +547,20 @@ export type UserUpdateOneRequiredWithoutHabitsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutHabitsInput, Prisma.UserUpdateWithoutHabitsInput>, Prisma.UserUncheckedUpdateWithoutHabitsInput>
 }
 
+export type UserCreateNestedOneWithoutGoalsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutGoalsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutGoalsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutGoalsInput
+  upsert?: Prisma.UserUpsertWithoutGoalsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutGoalsInput, Prisma.UserUpdateWithoutGoalsInput>, Prisma.UserUncheckedUpdateWithoutGoalsInput>
+}
+
 export type UserCreateWithoutRefreshTokensInput = {
   id?: string
   email: string
@@ -555,6 +576,7 @@ export type UserCreateWithoutRefreshTokensInput = {
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteCreateNestedManyWithoutOwnerInput
   habits?: Prisma.HabitCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRefreshTokensInput = {
@@ -572,6 +594,7 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutOwnerInput
   habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRefreshTokensInput = {
@@ -605,6 +628,7 @@ export type UserUpdateWithoutRefreshTokensInput = {
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUpdateManyWithoutOwnerNestedInput
   habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRefreshTokensInput = {
@@ -622,6 +646,7 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUncheckedUpdateManyWithoutOwnerNestedInput
   habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotesInput = {
@@ -639,6 +664,7 @@ export type UserCreateWithoutNotesInput = {
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   habits?: Prisma.HabitCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotesInput = {
@@ -656,6 +682,7 @@ export type UserUncheckedCreateWithoutNotesInput = {
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotesInput = {
@@ -689,6 +716,7 @@ export type UserUpdateWithoutNotesInput = {
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotesInput = {
@@ -706,6 +734,7 @@ export type UserUncheckedUpdateWithoutNotesInput = {
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTasksInput = {
@@ -723,6 +752,7 @@ export type UserCreateWithoutTasksInput = {
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteCreateNestedManyWithoutOwnerInput
   habits?: Prisma.HabitCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTasksInput = {
@@ -740,6 +770,7 @@ export type UserUncheckedCreateWithoutTasksInput = {
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutOwnerInput
   habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTasksInput = {
@@ -773,6 +804,7 @@ export type UserUpdateWithoutTasksInput = {
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUpdateManyWithoutOwnerNestedInput
   habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTasksInput = {
@@ -790,6 +822,7 @@ export type UserUncheckedUpdateWithoutTasksInput = {
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUncheckedUpdateManyWithoutOwnerNestedInput
   habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutHabitsInput = {
@@ -807,6 +840,7 @@ export type UserCreateWithoutHabitsInput = {
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteCreateNestedManyWithoutOwnerInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutHabitsInput = {
@@ -824,6 +858,7 @@ export type UserUncheckedCreateWithoutHabitsInput = {
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutOwnerInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutHabitsInput = {
@@ -857,6 +892,7 @@ export type UserUpdateWithoutHabitsInput = {
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUpdateManyWithoutOwnerNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutHabitsInput = {
@@ -874,6 +910,95 @@ export type UserUncheckedUpdateWithoutHabitsInput = {
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUncheckedUpdateManyWithoutOwnerNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutGoalsInput = {
+  id?: string
+  email: string
+  passwordHash?: string | null
+  name?: string | null
+  avatarUrl?: string | null
+  timezone?: string
+  preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  isVerified?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
+  notes?: Prisma.NoteCreateNestedManyWithoutOwnerInput
+  habits?: Prisma.HabitCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutGoalsInput = {
+  id?: string
+  email: string
+  passwordHash?: string | null
+  name?: string | null
+  avatarUrl?: string | null
+  timezone?: string
+  preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  isVerified?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutOwnerInput
+  habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutGoalsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
+}
+
+export type UserUpsertWithoutGoalsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutGoalsInput, Prisma.UserUncheckedUpdateWithoutGoalsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutGoalsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutGoalsInput, Prisma.UserUncheckedUpdateWithoutGoalsInput>
+}
+
+export type UserUpdateWithoutGoalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutOwnerNestedInput
+  habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutGoalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutOwnerNestedInput
+  habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -886,6 +1011,7 @@ export type UserCountOutputType = {
   tasks: number
   notes: number
   habits: number
+  goals: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -893,6 +1019,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   tasks?: boolean | UserCountOutputTypeCountTasksArgs
   notes?: boolean | UserCountOutputTypeCountNotesArgs
   habits?: boolean | UserCountOutputTypeCountHabitsArgs
+  goals?: boolean | UserCountOutputTypeCountGoalsArgs
 }
 
 /**
@@ -933,6 +1060,13 @@ export type UserCountOutputTypeCountHabitsArgs<ExtArgs extends runtime.Types.Ext
   where?: Prisma.HabitWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountGoalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GoalWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -950,6 +1084,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   tasks?: boolean | Prisma.User$tasksArgs<ExtArgs>
   notes?: boolean | Prisma.User$notesArgs<ExtArgs>
   habits?: boolean | Prisma.User$habitsArgs<ExtArgs>
+  goals?: boolean | Prisma.User$goalsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1001,6 +1136,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   tasks?: boolean | Prisma.User$tasksArgs<ExtArgs>
   notes?: boolean | Prisma.User$notesArgs<ExtArgs>
   habits?: boolean | Prisma.User$habitsArgs<ExtArgs>
+  goals?: boolean | Prisma.User$goalsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1013,6 +1149,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     tasks: Prisma.$TaskPayload<ExtArgs>[]
     notes: Prisma.$NotePayload<ExtArgs>[]
     habits: Prisma.$HabitPayload<ExtArgs>[]
+    goals: Prisma.$GoalPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1424,6 +1561,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   tasks<T extends Prisma.User$tasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notes<T extends Prisma.User$notesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   habits<T extends Prisma.User$habitsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$habitsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HabitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  goals<T extends Prisma.User$goalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$goalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GoalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1950,6 +2088,30 @@ export type User$habitsArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   distinct?: Prisma.HabitScalarFieldEnum | Prisma.HabitScalarFieldEnum[]
+}
+
+/**
+ * User.goals
+ */
+export type User$goalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Goal
+   */
+  select?: Prisma.GoalSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Goal
+   */
+  omit?: Prisma.GoalOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GoalInclude<ExtArgs> | null
+  where?: Prisma.GoalWhereInput
+  orderBy?: Prisma.GoalOrderByWithRelationInput | Prisma.GoalOrderByWithRelationInput[]
+  cursor?: Prisma.GoalWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GoalScalarFieldEnum | Prisma.GoalScalarFieldEnum[]
 }
 
 /**

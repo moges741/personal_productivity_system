@@ -294,6 +294,57 @@ export type EnumHabitCategoryWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumHabitCategoryFilter<$PrismaModel>
 }
 
+export type EnumGoalCategoryFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalCategory | Prisma.EnumGoalCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalCategory[] | Prisma.ListEnumGoalCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalCategory[] | Prisma.ListEnumGoalCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalCategoryFilter<$PrismaModel> | $Enums.GoalCategory
+}
+
+export type EnumGoalStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalStatus | Prisma.EnumGoalStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalStatus[] | Prisma.ListEnumGoalStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalStatus[] | Prisma.ListEnumGoalStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalStatusFilter<$PrismaModel> | $Enums.GoalStatus
+}
+
+export type EnumGoalPriorityFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalPriority | Prisma.EnumGoalPriorityFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalPriority[] | Prisma.ListEnumGoalPriorityFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalPriority[] | Prisma.ListEnumGoalPriorityFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalPriorityFilter<$PrismaModel> | $Enums.GoalPriority
+}
+
+export type EnumGoalCategoryWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalCategory | Prisma.EnumGoalCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalCategory[] | Prisma.ListEnumGoalCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalCategory[] | Prisma.ListEnumGoalCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalCategoryWithAggregatesFilter<$PrismaModel> | $Enums.GoalCategory
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGoalCategoryFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGoalCategoryFilter<$PrismaModel>
+}
+
+export type EnumGoalStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalStatus | Prisma.EnumGoalStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalStatus[] | Prisma.ListEnumGoalStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalStatus[] | Prisma.ListEnumGoalStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalStatusWithAggregatesFilter<$PrismaModel> | $Enums.GoalStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGoalStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGoalStatusFilter<$PrismaModel>
+}
+
+export type EnumGoalPriorityWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalPriority | Prisma.EnumGoalPriorityFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalPriority[] | Prisma.ListEnumGoalPriorityFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalPriority[] | Prisma.ListEnumGoalPriorityFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalPriorityWithAggregatesFilter<$PrismaModel> | $Enums.GoalPriority
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGoalPriorityFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGoalPriorityFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -558,6 +609,57 @@ export type NestedEnumHabitCategoryWithAggregatesFilter<$PrismaModel = never> = 
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumHabitCategoryFilter<$PrismaModel>
   _max?: Prisma.NestedEnumHabitCategoryFilter<$PrismaModel>
+}
+
+export type NestedEnumGoalCategoryFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalCategory | Prisma.EnumGoalCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalCategory[] | Prisma.ListEnumGoalCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalCategory[] | Prisma.ListEnumGoalCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalCategoryFilter<$PrismaModel> | $Enums.GoalCategory
+}
+
+export type NestedEnumGoalStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalStatus | Prisma.EnumGoalStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalStatus[] | Prisma.ListEnumGoalStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalStatus[] | Prisma.ListEnumGoalStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalStatusFilter<$PrismaModel> | $Enums.GoalStatus
+}
+
+export type NestedEnumGoalPriorityFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalPriority | Prisma.EnumGoalPriorityFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalPriority[] | Prisma.ListEnumGoalPriorityFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalPriority[] | Prisma.ListEnumGoalPriorityFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalPriorityFilter<$PrismaModel> | $Enums.GoalPriority
+}
+
+export type NestedEnumGoalCategoryWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalCategory | Prisma.EnumGoalCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalCategory[] | Prisma.ListEnumGoalCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalCategory[] | Prisma.ListEnumGoalCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalCategoryWithAggregatesFilter<$PrismaModel> | $Enums.GoalCategory
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGoalCategoryFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGoalCategoryFilter<$PrismaModel>
+}
+
+export type NestedEnumGoalStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalStatus | Prisma.EnumGoalStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalStatus[] | Prisma.ListEnumGoalStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalStatus[] | Prisma.ListEnumGoalStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalStatusWithAggregatesFilter<$PrismaModel> | $Enums.GoalStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGoalStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGoalStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumGoalPriorityWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalPriority | Prisma.EnumGoalPriorityFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalPriority[] | Prisma.ListEnumGoalPriorityFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalPriority[] | Prisma.ListEnumGoalPriorityFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalPriorityWithAggregatesFilter<$PrismaModel> | $Enums.GoalPriority
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGoalPriorityFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGoalPriorityFilter<$PrismaModel>
 }
 
 

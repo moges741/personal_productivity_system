@@ -1,0 +1,7 @@
+local login
+
+
+{
+  "email": "testuser@example.com",
+  "password": "StrongPass123!"
+}

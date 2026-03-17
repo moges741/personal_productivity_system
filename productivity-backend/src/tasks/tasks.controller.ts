@@ -29,7 +29,12 @@ create(
 ) {
   return this.tasksService.create(userId, dto);
 }
-
+  @Get()
+  findAll(
+    @GetUser('userId') userId: string,
+  ) {
+    return this.tasksService.findAll(userId);
+  }
 @Get(':id')
 findOne(
   @GetUser('userId') userId: string,

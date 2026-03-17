@@ -10,6 +10,7 @@ import { CreateHabitDto } from './dto/create-habit.dto.js';
 import { HabitFrequency } from '../generated/prisma-client/enums.js';
 import { Habit } from '../generated/prisma-client/browser.js';
 import { MarkHabitDoneDto } from './dto/mark-habit-done.dto.js';
+import { UpdateHabitDto } from './dto/update-habit.dto.js';
 
 @Injectable()
 export class HabitsService {
@@ -62,7 +63,7 @@ export class HabitsService {
     async update(
         userId: string,
         habitId: string,
-        dto: CreateHabitDto,
+        dto: UpdateHabitDto,
     ){
         const habit = await this.findOne(userId, habitId);
         const newFrequency = dto.frequency ?? habit.frequency;

@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module.js';
 import { NotesModule } from './notes/notes.module.js';
 import { TasksModule } from './tasks/tasks.module.js';
+import { HabitsModule } from './habits/habits.module.js';
 
 
 @Module({
@@ -21,6 +22,7 @@ import { TasksModule } from './tasks/tasks.module.js';
   AuthModule,
   NotesModule,
   TasksModule,
+  HabitsModule
 ],
   controllers: [AppController],
   providers: [AppService],

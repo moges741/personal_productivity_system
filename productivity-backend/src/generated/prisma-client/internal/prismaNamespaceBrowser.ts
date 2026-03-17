@@ -55,7 +55,9 @@ export const ModelName = {
   RefreshToken: 'RefreshToken',
   Note: 'Note',
   Attachment: 'Attachment',
-  Task: 'Task'
+  Task: 'Task',
+  Habit: 'Habit',
+  HabitCompletion: 'HabitCompletion'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -150,6 +152,40 @@ export const TaskScalarFieldEnum = {
 } as const
 
 export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
+
+
+export const HabitScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  frequency: 'frequency',
+  customDays: 'customDays',
+  targetCount: 'targetCount',
+  currentStreak: 'currentStreak',
+  bestStreak: 'bestStreak',
+  reminderTime: 'reminderTime',
+  color: 'color',
+  icon: 'icon',
+  category: 'category',
+  lastCompletedAt: 'lastCompletedAt',
+  isArchived: 'isArchived',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+} as const
+
+export type HabitScalarFieldEnum = (typeof HabitScalarFieldEnum)[keyof typeof HabitScalarFieldEnum]
+
+
+export const HabitCompletionScalarFieldEnum = {
+  id: 'id',
+  completedAt: 'completedAt',
+  note: 'note',
+  habitId: 'habitId'
+} as const
+
+export type HabitCompletionScalarFieldEnum = (typeof HabitCompletionScalarFieldEnum)[keyof typeof HabitCompletionScalarFieldEnum]
 
 
 export const SortOrder = {

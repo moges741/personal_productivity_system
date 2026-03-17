@@ -25,3 +25,27 @@ export const TaskPriority = {
 } as const
 
 export type TaskPriority = (typeof TaskPriority)[keyof typeof TaskPriority]
+
+
+export const HabitFrequency = {
+  daily: 'daily',
+  weekly: 'weekly',
+  custom: 'custom'
+} as const
+
+export type HabitFrequency = (typeof HabitFrequency)[keyof typeof HabitFrequency]
+
+
+export const HabitCategory = {
+  health: 'health',
+  fitness: 'fitness',
+  productivity: 'productivity',
+  learning: 'learning',
+  mindfulness: 'mindfulness',
+  finance: 'finance',
+  social: 'social',
+  creativity: 'creativity',
+  other: 'other'
+} as const
+
+export type HabitCategory = (typeof HabitCategory)[keyof typeof HabitCategory]

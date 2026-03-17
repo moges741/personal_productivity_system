@@ -66,3 +66,13 @@ export type Attachment = Prisma.AttachmentModel
  * 
  */
 export type Task = Prisma.TaskModel
+/**
+ * Model Habit
+ * 
+ */
+export type Habit = Prisma.HabitModel
+/**
+ * Model HabitCompletion
+ * 
+ */
+export type HabitCompletion = Prisma.HabitCompletionModel

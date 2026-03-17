@@ -24,7 +24,7 @@ model User {
   refreshTokens   RefreshToken[]
   tasks           Task[]
   notes           Note[]
-  //habits          Habit[]
+  habits          Habit[]
   //calendarEvents  CalendarEvent[]
 
   @@index([email])
@@ -115,4 +115,67 @@ model Task {
 
   userId      String
   user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum HabitFrequency {
+  daily
+  weekly
+  custom   
+}
+
+enum HabitCategory {
+  health
+  fitness
+  productivity
+  learning
+  mindfulness
+  finance
+  social
+  creativity
+  other
+}
+
+model Habit {
+  id              String         @id @default(cuid())
+  name            String
+  description     String?
+
+  frequency       HabitFrequency @default(daily)
+
+  // For custom frequency: store days as JSON array e.g. [1,3,5] = Mon/Wed/Fri
+  // 0 = Sunday ... 6 = Saturday (JS Date.getDay() convention)
+  customDays      Int[]          @default([])
+
+  targetCount     Int            @default(1)    
+  currentStreak   Int            @default(0)
+  bestStreak      Int            @default(0)
+
+  reminderTime    String?
+
+  color           String         @default("#6366f1")  
+  icon            String?        
+  category        HabitCategory  @default(other)
+
+  lastCompletedAt DateTime?
+  isArchived      Boolean        @default(false)
+  isDeleted       Boolean        @default(false)
+
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  userId          String
+  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Future: completions history table will relate here
+  completions     HabitCompletion[]
+}
+
+// ── HabitCompletion model (add now, use later) ─────────────────────────────
+model HabitCompletion {
+  id          String   @id @default(cuid())
+  completedAt DateTime @default(now())
+  note        String?  // optional "how did it go?" note
+
+  habitId     String
+  habit       Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade)
 }

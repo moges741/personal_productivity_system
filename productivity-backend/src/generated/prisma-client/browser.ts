@@ -67,3 +67,8 @@ export type GoalMilestone = Prisma.GoalMilestoneModel
  * 
  */
 export type GoalProgressEntry = Prisma.GoalProgressEntryModel
+/**
+ * Model CalendarEvent
+ * 
+ */
+export type CalendarEvent = Prisma.CalendarEventModel

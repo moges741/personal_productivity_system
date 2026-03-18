@@ -7,6 +7,8 @@ import { AuthModule } from './auth/auth.module.js';
 import { NotesModule } from './notes/notes.module.js';
 import { TasksModule } from './tasks/tasks.module.js';
 import { HabitsModule } from './habits/habits.module.js';
+import { GoalsModule } from './goals/goals.module.js';
+import { CalendarEventsModule } from './calendar-events/calendar-events.module.js';
 
 
 @Module({
@@ -22,7 +24,9 @@ import { HabitsModule } from './habits/habits.module.js';
   AuthModule,
   NotesModule,
   TasksModule,
-  HabitsModule
+  HabitsModule,
+  GoalsModule,
+  CalendarEventsModule
 ],
   controllers: [AppController],
   providers: [AppService],

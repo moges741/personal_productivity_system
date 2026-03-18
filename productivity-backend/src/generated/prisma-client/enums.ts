@@ -80,3 +80,23 @@ export const GoalPriority = {
 } as const
 
 export type GoalPriority = (typeof GoalPriority)[keyof typeof GoalPriority]
+
+
+export const EventStatus = {
+  tentative: 'tentative',
+  confirmed: 'confirmed',
+  cancelled: 'cancelled'
+} as const
+
+export type EventStatus = (typeof EventStatus)[keyof typeof EventStatus]
+
+
+export const EventCategory = {
+  personal: 'personal',
+  work: 'work',
+  health: 'health',
+  family: 'family',
+  other: 'other'
+} as const
+
+export type EventCategory = (typeof EventCategory)[keyof typeof EventCategory]

@@ -60,7 +60,8 @@ export const ModelName = {
   HabitCompletion: 'HabitCompletion',
   Goal: 'Goal',
   GoalMilestone: 'GoalMilestone',
-  GoalProgressEntry: 'GoalProgressEntry'
+  GoalProgressEntry: 'GoalProgressEntry',
+  CalendarEvent: 'CalendarEvent'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -237,6 +238,33 @@ export const GoalProgressEntryScalarFieldEnum = {
 } as const
 
 export type GoalProgressEntryScalarFieldEnum = (typeof GoalProgressEntryScalarFieldEnum)[keyof typeof GoalProgressEntryScalarFieldEnum]
+
+
+export const CalendarEventScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  location: 'location',
+  startDateTime: 'startDateTime',
+  endDateTime: 'endDateTime',
+  isAllDay: 'isAllDay',
+  isRecurring: 'isRecurring',
+  recurrenceRule: 'recurrenceRule',
+  color: 'color',
+  status: 'status',
+  category: 'category',
+  reminderMinutesBefore: 'reminderMinutesBefore',
+  linkedTaskId: 'linkedTaskId',
+  linkedGoalId: 'linkedGoalId',
+  isPinned: 'isPinned',
+  isArchived: 'isArchived',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+} as const
+
+export type CalendarEventScalarFieldEnum = (typeof CalendarEventScalarFieldEnum)[keyof typeof CalendarEventScalarFieldEnum]
 
 
 export const SortOrder = {

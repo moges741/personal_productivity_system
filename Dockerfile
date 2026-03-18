@@ -1,41 +1,43 @@
-# Stage 1: Build the app
+# Use official Node.js 20 Alpine image (lightweight, secure)
 FROM node:20-alpine AS builder
 
-# Set working directory to /app (Render default)
+# Set working directory (Render uses /app)
 WORKDIR /app
 
-# Copy package files first for caching
+# Copy package files first (for caching)
 COPY package*.json ./
 
-# Install all dependencies (including dev for build)
+# Install ALL dependencies (dev + prod) for build
 RUN npm ci
 
-# Copy the rest of the application code
+# Copy the rest of the project
 COPY . .
 
-# Build the TypeScript project
+# Generate Prisma client (important!)
+RUN npx prisma generate
+
+# Build the NestJS app (creates dist/)
 RUN npm run build
 
-# Stage 2: Production image (smaller, secure)
-FROM node:20-alpine AS production
+# Stage 2: Production image (smaller)
+FROM node:20-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Copy only production dependencies + built files
+# Copy only what's needed for runtime
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/prisma ./prisma   # if you have Prisma schema/migrations
+COPY --from=builder /app/prisma ./prisma
 
-# Install only production dependencies
+# Install ONLY production dependencies
 RUN npm ci --omit=dev
 
-# Set environment variables
+# Environment variables
 ENV NODE_ENV=production
 ENV PORT=10000
 
-# Expose the port Render expects
+# Expose Render's required port
 EXPOSE 10000
 
-# Start the application
+# Start command (must match your package.json "start:prod")
 CMD ["node", "dist/main"]

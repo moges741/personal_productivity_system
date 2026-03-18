@@ -2,15 +2,17 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
+# Copy from subfolder context
+COPY productivity-backend/package*.json ./
 RUN npm ci
 
-COPY . .
+COPY productivity-backend/ .
+
 RUN npm run build
 
 ENV NODE_ENV=production
-ENV PORT=3000
+ENV PORT=10000
 
-EXPOSE 3000
+EXPOSE 10000
 
 CMD ["npm", "run", "start:prod"]

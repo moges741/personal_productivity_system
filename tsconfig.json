@@ -2,26 +2,26 @@
   "compilerOptions": {
     "rootDir": "./src",
     "outDir": "./dist",
+
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "target": "ES2023",
+    "target": "ES2022",
+
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "resolvePackageJsonExports": false,
+
     "esModuleInterop": true,
-    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+
+    "sourceMap": true,
     "declaration": true,
     "removeComments": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
-    "incremental": true,
+
+    "strict": false,
     "skipLibCheck": true,
-    "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "noFallthroughCasesInSwitch": false
+
+    "noEmit": false
   },
-  "exclude": ["node_modules", "dist", "test", "**/*spec.ts"],
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "test", "**/*.spec.ts"]
 }

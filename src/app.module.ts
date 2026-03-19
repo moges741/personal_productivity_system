@@ -9,6 +9,7 @@ import { TasksModule } from './tasks/tasks.module.js';
 import { HabitsModule } from './habits/habits.module.js';
 import { GoalsModule } from './goals/goals.module.js';
 import { CalendarEventsModule } from './calendar-events/calendar-events.module.js';
+import { HealthController } from './health.controller.js';
 
 
 @Module({
@@ -28,7 +29,7 @@ import { CalendarEventsModule } from './calendar-events/calendar-events.module.j
   GoalsModule,
   CalendarEventsModule
 ],
-  controllers: [AppController],
+  controllers: [AppController, HealthController],
   providers: [AppService],
 })
 export class AppModule {}

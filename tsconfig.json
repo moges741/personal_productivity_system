@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
-    "types": ["node", "multer"],
-     "module": "NodeNext",
+    "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "target": "ES2023",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "resolvePackageJsonExports": false,    
+    "resolvePackageJsonExports": false,
     "esModuleInterop": true,
     "isolatedModules": true,
     "declaration": true,
@@ -14,7 +13,6 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "outDir": "./dist",
-    // "baseUrl": "./",                    
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
@@ -22,6 +20,5 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false
-  },
-  
+  }
 }

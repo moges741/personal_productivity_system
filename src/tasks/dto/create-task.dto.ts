@@ -28,5 +28,7 @@ export class CreateTaskDto {
     @IsBoolean()
     @IsOptional()
     isPinned?: boolean;
-
+    @IsString()
+    @IsOptional()
+    color?: string;
 }

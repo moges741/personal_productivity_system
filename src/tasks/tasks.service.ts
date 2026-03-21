@@ -16,6 +16,7 @@ constructor(private readonly prisma: PrismaService){}
             title: dto.title,
             description: dto.description,
             status: dto.status,
+            color: dto.color ?? "default",
             priority: dto.priority,
             dueDate: dto.dueDate ? new Date(dto.dueDate) : null,
             isPinned: dto.isPinned ?? false,

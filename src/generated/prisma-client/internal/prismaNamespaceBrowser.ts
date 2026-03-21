@@ -150,6 +150,7 @@ export const TaskScalarFieldEnum = {
   isPinned: 'isPinned',
   isArchived: 'isArchived',
   isDeleted: 'isDeleted',
+  color: 'color',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId'

@@ -110,7 +110,7 @@ model Task {
   isPinned    Boolean      @default(false)
   isArchived  Boolean      @default(false)
   isDeleted   Boolean      @default(false)
-
+  color     String?  @default("default")
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
 

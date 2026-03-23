@@ -17,60 +17,58 @@ export class AuthService {
     private configService: ConfigService,
   ) {}
 
-
   async validateUser(email: string, pass: string): Promise<any> {
     const user = await this.usersService.findByEmail(email);
-
-    if (!user) {
-      return null;
-    }
+    if (!user) return null;
 
     const passwordHash = user.passwordHash ?? 'invalid-placeholder-hash';
     const isValid = await bcrypt.compare(pass, passwordHash);
-
-    if (!isValid) {
-      return null;
-    }
-
+    if (!isValid) return null;
 
     const { passwordHash: _, ...safeUser } = user;
     return safeUser;
   }
 
-
-   
- async login(user: any) {
- if (!user?.id || !user?.email) {
+  async login(user: any) {
+    if (!user?.id || !user?.email) {
       throw new UnauthorizedException('Invalid user data');
     }
 
-  const payload: JwtPayload = { sub: user.id, email: user.email };
-  const accessToken = await this.jwtService.signAsync(payload); // uses default from JwtModule
+    const payload: JwtPayload = { sub: user.id, email: user.email };
 
-  const refreshPayload = { sub: user.id };
+    const accessToken = await this.jwtService.signAsync(payload);
 
-const refreshExpiry = this.configService.get<string>('REFRESH_TOKEN_EXPIRY') || '7d';
+    const refreshExpiry =
+      this.configService.get<string>('REFRESH_TOKEN_EXPIRY') || '7d';
 
-const refreshToken = await this.jwtService.signAsync(refreshPayload, {
-  secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
-//   expiresIn: refreshExpiry as any,  // ← quick bypass (works fine)
-  expiresIn: refreshExpiry as `${number}${'ms' | 's' | 'm' | 'h' | 'd' | 'w' | 'y'}` | number,
-});
+    const refreshToken = await this.jwtService.signAsync(
+      { sub: user.id },
+      {
+        secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
+        expiresIn: refreshExpiry as `${number}${'ms' | 's' | 'm' | 'h' | 'd' | 'w' | 'y'}` | number,
+      },
+    );
 
-  const hashedRefresh = await bcrypt.hash(refreshToken, 12);
+    const hashedRefresh = await bcrypt.hash(refreshToken, 12);
 
-  await this.usersService.storeRefreshToken(
-    user.id,
-    hashedRefresh,
-    new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-  );
+    await this.usersService.storeRefreshToken(
+      user.id,
+      hashedRefresh,
+      new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+    );
 
-  return {
-    access_token: accessToken,
-    refresh_token: refreshToken,
-    user: { id: user.id, email: user.email, name: user.name },
-  };
-}
+    return {
+      access_token:  accessToken,
+      refresh_token: refreshToken,
+      user: {
+        id:    user.id,
+        email: user.email,
+        name:  user.name,
+      },
+    };
+  }
+
+  // ── Updated: now returns user so frontend can restore full session ──
   async refreshToken(userId: string) {
     const user = await this.usersService.findById(userId);
 
@@ -79,7 +77,7 @@ const refreshToken = await this.jwtService.signAsync(refreshPayload, {
     }
 
     const payload: JwtPayload = {
-      sub: user.id,
+      sub:   user.id,
       email: user.email,
     };
 
@@ -87,9 +85,13 @@ const refreshToken = await this.jwtService.signAsync(refreshPayload, {
 
     return {
       access_token: newAccessToken,
+      // Return user so AuthProvider can call setAuth() with full data
+      user: {
+        id:        user.id,
+        email:     user.email,
+        name:      user.name,
+        createdAt: user.createdAt,
+      },
     };
   }
-
-  // Next steps you can add:
-  // async logout(userId: string, refreshTokenFromCookie: string) { ... }
 }

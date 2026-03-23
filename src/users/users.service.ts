@@ -1,4 +1,4 @@
-import { Injectable,ConflictException } from '@nestjs/common';
+import { Injectable,ConflictException , NotFoundException} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service.js';
 import * as bcrypt from 'bcrypt'
 import type { ReturnProps } from '../types/type.js';
@@ -47,16 +47,19 @@ export class UsersService {
     });
 
   }
-
- async findById(id: string) {
+async findById(userId: string) {
   const user = await this.prisma.user.findUnique({
-    where: { id },
+    where: { id: userId },
+    select: {
+      id: true,
+      email: true,
+      name: true,
+      createdAt: true,
+      // Never return password
+    },
   });
 
-  if (!user) {
-    return null; 
-  }
-
+  if (!user) throw new NotFoundException('User not found');
   return user;
 }
 

@@ -1,47 +1,65 @@
-import { Controller, Post, Body, Res, HttpCode, UseGuards, Req } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  HttpCode,
+  UseGuards,
+  Req,
+} from '@nestjs/common';
 import { AuthService } from './auth.service.js';
 import { Public } from './decorators/public.decorator.js';
 import { AuthGuard } from '@nestjs/passport';
-import type { Response, Request } from 'express';
+import type { Request } from 'express';
+
 @Controller('auth')
 export class AuthController {
-    constructor(private authService : AuthService){}
+  constructor(private authService: AuthService) {}
 
-    @Public()
-    @UseGuards(AuthGuard('local'))
-    @Post('login')
-    @HttpCode(200)
-    async login(@Req() req, @Res({passthrough : true}) res: Response ){
-        const tokens = await this.authService.login(req.user);
+  // ── Login ──────────────────────────────────────────────────────
+  @Public()
+  @UseGuards(AuthGuard('local'))
+  @Post('login')
+  @HttpCode(200)
+  async login(@Req() req: Request) {
+    // req.user is now fully typed: { id, email, name, avatarUrl? }
+    // because LocalStrategy.validate() returns the safeUser object
+    // and express.d.ts tells TypeScript what shape req.user is
+    const tokens = await this.authService.login(req.user);
 
+    return {
+      access_token:  tokens.access_token,
+      refresh_token: tokens.refresh_token,
+      user: {
+        id:    req.user!.id,
+        name:  req.user!.name,
+        email: req.user!.email,
+      },
+    };
+  }
 
-        res.cookie("refreshToken", tokens.refresh_token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
-            maxAge: 7 * 24 * 60 * 60 * 1000,
-        })
-
-        return {
-            access_token: tokens.access_token,
-            name: req.user.name,
-            email: req.user.email
-
-        }
-    }
-
+  // ── Refresh ────────────────────────────────────────────────────
+  // Frontend sends: POST /auth/refresh { "refreshToken": "..." }
   @Public()
   @Post('refresh')
   @UseGuards(AuthGuard('refresh'))
-  async refresh(@Req() req, @Res({ passthrough: true }) res: Response) {
-    const newAccess = await this.authService.refreshToken(req.user.userId);
+  @HttpCode(200)
+  async refresh(@Req() req: Request) {
+    // req.user set by RefreshStrategy.validate() → { userId: payload.sub }
+    const result = await this.authService.refreshToken(
+      (req.user as any).userId,
+    );
 
-    return { access_token: newAccess.access_token };
+    return {
+      access_token: result.access_token,
+      user:         result.user,
+    };
   }
 
+  // ── Logout ─────────────────────────────────────────────────────
   @Post('logout')
-  async logout(@Res({ passthrough: true }) res: Response) {
-    res.clearCookie('refreshToken');
+  @HttpCode(200)
+  async logout() {
+    // No cookie to clear — frontend removes token from localStorage
+    // Optionally revoke refresh token from DB here later
     return { message: 'Logged out' };
   }
 }

@@ -3,23 +3,17 @@ import { AppModule } from './app.module.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const port =  3001;
-app.enableCors({
-  origin: (origin, callback) => {
-    const allowedOrigins = [
+
+  const port = process.env.PORT || 3001;
+
+  app.enableCors({
+    origin: [
       'http://localhost:3000',
-      'https://my-daily-tools.vercel.app/',
-    ];
+      'https://my-daily-tools.vercel.app',
+    ],
+    credentials: true,
+  });
 
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-});
   await app.listen(port);
-
 }
 bootstrap();

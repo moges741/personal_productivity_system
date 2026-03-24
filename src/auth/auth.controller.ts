@@ -54,7 +54,6 @@ export class AuthController {
     };
   }
 
-  // ── Logout ─────────────────────────────────────────────────────
   @Post('logout')
   @HttpCode(200)
   async logout() {

@@ -8,7 +8,7 @@ app.enableCors({
   origin: (origin, callback) => {
     const allowedOrigins = [
       'http://localhost:3000',
-      'https://personal-productivity-vercel.vercel.app',
+      'https://my-daily-tools.vercel.app/',
     ];
 
     if (!origin || allowedOrigins.includes(origin)) {

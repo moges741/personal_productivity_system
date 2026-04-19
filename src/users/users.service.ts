@@ -62,7 +62,35 @@ async findById(userId: string) {
   if (!user) throw new NotFoundException('User not found');
   return user;
 }
-
+async findByGoogleId(googleId: string) {
+    return this.prisma.user.findUnique({ where: { googleId } });
+  }
+  async createGoogleUser(data: {
+    email: string;
+    name: string;
+    googleId: string;
+    avatar?: string;
+  }) {
+    return this.prisma.user.create({
+      data: {
+        email: data.email,
+        name: data.name,
+        googleId: data.googleId,
+        avatar: data.avatar,
+        password: null,
+      },
+    });
+  }
+  async linkGoogleAccount(
+    id: string,
+    googleId: string,
+    avatar?: string,
+  ) {
+    return this.prisma.user.update({
+      where: { id },
+      data: { googleId, avatar },
+    });
+  }
 async storeRefreshToken(userId: string, hashedToken: string, expiresAt: Date) {
   await this.prisma.refreshToken.upsert({
   where: { userId: userId },         

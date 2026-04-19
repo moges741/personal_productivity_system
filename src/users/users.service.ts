@@ -35,17 +35,20 @@ export class UsersService {
 // TODO: Fire BullMQ job for "welcome email + verification"
   return user;
 }
-  async findByEmail(email: string){
-    return this.prisma.user.findUnique(
-        {where: {email},
-    select: {
-        id: true,
-        email: true,
-        name: true,
-        passwordHash: true,
-    }
-    });
+  // async findByEmail(email: string){
+  //   return this.prisma.user.findUnique(
+  //       {where: {email},
+  //   select: {
+  //       id: true,
+  //       email: true,
+  //       name: true,
+  //       passwordHash: true,
+  //   }
+  //   });
 
+  // }
+  async findByEmail(email: string) {
+    return this.prisma.user.findUnique({ where: { email } });
   }
 async findById(userId: string) {
   const user = await this.prisma.user.findUnique({
@@ -76,7 +79,7 @@ async findByGoogleId(googleId: string) {
         email: data.email,
         name: data.name,
         googleId: data.googleId,
-        avatar: data.avatar,
+        avatarUrl: data.avatar,
         password: null,
       },
     });
@@ -88,7 +91,7 @@ async findByGoogleId(googleId: string) {
   ) {
     return this.prisma.user.update({
       where: { id },
-      data: { googleId, avatar },
+      data: { googleId, avatarUrl: avatar },
     });
   }
 async storeRefreshToken(userId: string, hashedToken: string, expiresAt: Date) {

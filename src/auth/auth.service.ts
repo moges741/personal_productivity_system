@@ -28,7 +28,29 @@ export class AuthService {
     const { passwordHash: _, ...safeUser } = user;
     return safeUser;
   }
+  async validateGoogleUser(profile: {
+    googleId: string;
+    email: string;
+    name: string;
+    avatar?: string;
+  }) {
+    let user = await this.usersService.findByGoogleId(profile.googleId);
+    if (user) return user;
 
+    user = await this.usersService.findByEmail(profile.email);
+    if (user) {
+      if (!user.googleId) {
+        user = await this.usersService.linkGoogleAccount(
+          user.id,
+          profile.googleId,
+          profile.avatar,
+        );
+      }
+      return user;
+    }
+
+    return this.usersService.createGoogleUser(profile);
+  }
   async login(user: any) {
     if (!user?.id || !user?.email) {
       throw new UnauthorizedException('Invalid user data');

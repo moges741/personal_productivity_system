@@ -13,6 +13,7 @@ model User {
   email           String   @unique
   passwordHash    String?  
   name            String?
+  googleId  String?  @unique
   avatarUrl       String?
   timezone        String   @default("UTC")
   preferences     Json     @default("{}")   

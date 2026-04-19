@@ -5,3 +5,4 @@ local login
   "email": "testuser@example.com",
   "password": "StrongPass123!"
 }
+DATABASE_URL="postgresql://moges_user:12EE$%hdjnjn@localhost:5432/local_for_productivity"

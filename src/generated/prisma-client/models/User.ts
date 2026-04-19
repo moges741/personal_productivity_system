@@ -29,6 +29,7 @@ export type UserMinAggregateOutputType = {
   email: string | null
   passwordHash: string | null
   name: string | null
+  googleId: string | null
   avatarUrl: string | null
   timezone: string | null
   isVerified: boolean | null
@@ -42,6 +43,7 @@ export type UserMaxAggregateOutputType = {
   email: string | null
   passwordHash: string | null
   name: string | null
+  googleId: string | null
   avatarUrl: string | null
   timezone: string | null
   isVerified: boolean | null
@@ -55,6 +57,7 @@ export type UserCountAggregateOutputType = {
   email: number
   passwordHash: number
   name: number
+  googleId: number
   avatarUrl: number
   timezone: number
   preferences: number
@@ -71,6 +74,7 @@ export type UserMinAggregateInputType = {
   email?: true
   passwordHash?: true
   name?: true
+  googleId?: true
   avatarUrl?: true
   timezone?: true
   isVerified?: true
@@ -84,6 +88,7 @@ export type UserMaxAggregateInputType = {
   email?: true
   passwordHash?: true
   name?: true
+  googleId?: true
   avatarUrl?: true
   timezone?: true
   isVerified?: true
@@ -97,6 +102,7 @@ export type UserCountAggregateInputType = {
   email?: true
   passwordHash?: true
   name?: true
+  googleId?: true
   avatarUrl?: true
   timezone?: true
   preferences?: true
@@ -184,6 +190,7 @@ export type UserGroupByOutputType = {
   email: string
   passwordHash: string | null
   name: string | null
+  googleId: string | null
   avatarUrl: string | null
   timezone: string
   preferences: runtime.JsonValue
@@ -219,6 +226,7 @@ export type UserWhereInput = {
   email?: Prisma.StringFilter<"User"> | string
   passwordHash?: Prisma.StringNullableFilter<"User"> | string | null
   name?: Prisma.StringNullableFilter<"User"> | string | null
+  googleId?: Prisma.StringNullableFilter<"User"> | string | null
   avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
   timezone?: Prisma.StringFilter<"User"> | string
   preferences?: Prisma.JsonFilter<"User">
@@ -239,6 +247,7 @@ export type UserOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
+  googleId?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   timezone?: Prisma.SortOrder
   preferences?: Prisma.SortOrder
@@ -257,6 +266,7 @@ export type UserOrderByWithRelationInput = {
 export type UserWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   email?: string
+  googleId?: string
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
@@ -275,13 +285,14 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   habits?: Prisma.HabitListRelationFilter
   goals?: Prisma.GoalListRelationFilter
   calendarEvents?: Prisma.CalendarEventListRelationFilter
-}, "id" | "email">
+}, "id" | "email" | "googleId">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
+  googleId?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   timezone?: Prisma.SortOrder
   preferences?: Prisma.SortOrder
@@ -302,6 +313,7 @@ export type UserScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   passwordHash?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  googleId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   avatarUrl?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   timezone?: Prisma.StringWithAggregatesFilter<"User"> | string
   preferences?: Prisma.JsonWithAggregatesFilter<"User">
@@ -316,6 +328,7 @@ export type UserCreateInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
+  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -336,6 +349,7 @@ export type UserUncheckedCreateInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
+  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -356,6 +370,7 @@ export type UserUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -376,6 +391,7 @@ export type UserUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -396,6 +412,7 @@ export type UserCreateManyInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
+  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -410,6 +427,7 @@ export type UserUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -424,6 +442,7 @@ export type UserUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -438,6 +457,7 @@ export type UserCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  googleId?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   timezone?: Prisma.SortOrder
   preferences?: Prisma.SortOrder
@@ -452,6 +472,7 @@ export type UserMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  googleId?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   timezone?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
@@ -465,6 +486,7 @@ export type UserMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  googleId?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   timezone?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
@@ -587,6 +609,7 @@ export type UserCreateWithoutRefreshTokensInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
+  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -606,6 +629,7 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
+  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -641,6 +665,7 @@ export type UserUpdateWithoutRefreshTokensInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -660,6 +685,7 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -679,6 +705,7 @@ export type UserCreateWithoutNotesInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
+  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -698,6 +725,7 @@ export type UserUncheckedCreateWithoutNotesInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
+  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -733,6 +761,7 @@ export type UserUpdateWithoutNotesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -752,6 +781,7 @@ export type UserUncheckedUpdateWithoutNotesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -771,6 +801,7 @@ export type UserCreateWithoutTasksInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
+  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -790,6 +821,7 @@ export type UserUncheckedCreateWithoutTasksInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
+  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -825,6 +857,7 @@ export type UserUpdateWithoutTasksInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -844,6 +877,7 @@ export type UserUncheckedUpdateWithoutTasksInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -863,6 +897,7 @@ export type UserCreateWithoutHabitsInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
+  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -882,6 +917,7 @@ export type UserUncheckedCreateWithoutHabitsInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
+  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -917,6 +953,7 @@ export type UserUpdateWithoutHabitsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -936,6 +973,7 @@ export type UserUncheckedUpdateWithoutHabitsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -955,6 +993,7 @@ export type UserCreateWithoutGoalsInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
+  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -974,6 +1013,7 @@ export type UserUncheckedCreateWithoutGoalsInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
+  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -1009,6 +1049,7 @@ export type UserUpdateWithoutGoalsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -1028,6 +1069,7 @@ export type UserUncheckedUpdateWithoutGoalsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -1047,6 +1089,7 @@ export type UserCreateWithoutCalendarEventsInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
+  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -1066,6 +1109,7 @@ export type UserUncheckedCreateWithoutCalendarEventsInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
+  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -1101,6 +1145,7 @@ export type UserUpdateWithoutCalendarEventsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -1120,6 +1165,7 @@ export type UserUncheckedUpdateWithoutCalendarEventsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -1215,6 +1261,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   email?: boolean
   passwordHash?: boolean
   name?: boolean
+  googleId?: boolean
   avatarUrl?: boolean
   timezone?: boolean
   preferences?: boolean
@@ -1236,6 +1283,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   passwordHash?: boolean
   name?: boolean
+  googleId?: boolean
   avatarUrl?: boolean
   timezone?: boolean
   preferences?: boolean
@@ -1250,6 +1298,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   passwordHash?: boolean
   name?: boolean
+  googleId?: boolean
   avatarUrl?: boolean
   timezone?: boolean
   preferences?: boolean
@@ -1264,6 +1313,7 @@ export type UserSelectScalar = {
   email?: boolean
   passwordHash?: boolean
   name?: boolean
+  googleId?: boolean
   avatarUrl?: boolean
   timezone?: boolean
   preferences?: boolean
@@ -1273,7 +1323,7 @@ export type UserSelectScalar = {
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "passwordHash" | "name" | "avatarUrl" | "timezone" | "preferences" | "isVerified" | "lastLoginAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "passwordHash" | "name" | "googleId" | "avatarUrl" | "timezone" | "preferences" | "isVerified" | "lastLoginAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   refreshTokens?: boolean | Prisma.User$refreshTokensArgs<ExtArgs>
   tasks?: boolean | Prisma.User$tasksArgs<ExtArgs>
@@ -1301,6 +1351,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     email: string
     passwordHash: string | null
     name: string | null
+    googleId: string | null
     avatarUrl: string | null
     timezone: string
     preferences: runtime.JsonValue
@@ -1741,6 +1792,7 @@ export interface UserFieldRefs {
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly passwordHash: Prisma.FieldRef<"User", 'String'>
   readonly name: Prisma.FieldRef<"User", 'String'>
+  readonly googleId: Prisma.FieldRef<"User", 'String'>
   readonly avatarUrl: Prisma.FieldRef<"User", 'String'>
   readonly timezone: Prisma.FieldRef<"User", 'String'>
   readonly preferences: Prisma.FieldRef<"User", 'Json'>

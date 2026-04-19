@@ -5,12 +5,14 @@ import {
   HttpCode,
   UseGuards,
   Req,
+  Res
 } from '@nestjs/common';
 import { AuthService } from './auth.service.js';
 import { Public } from './decorators/public.decorator.js';
 import { AuthGuard } from '@nestjs/passport';
 import type { Request } from 'express';
 import { GoogleAuthGuard } from './guards/google-auth.guard.js';
+import { Response } from 'express';
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
@@ -60,12 +62,30 @@ export class AuthController {
     // Passport handles the redirect to Google
   }
 
-  @Get('google/callback')
-  @UseGuards(GoogleAuthGuard)
-  async googleAuthCallback(@Req() req: any) {
-    // Reuses your existing JWT + refresh token logic (no duplication)
-    return this.authService.login(req.user); // returns { access_token, refresh_token, user }
-  }
+// @Get('google/callback')
+// @UseGuards(GoogleAuthGuard)
+// async googleAuthCallback(@Req() req: any, @Res() res: Response) {
+//   const tokens = await this.authService.login(req.user);
+
+//   // Redirect to a PUBLIC callback page (outside the protected (app) group)
+//   const frontendCallbackUrl = 'http://localhost:3000/auth/callback';
+
+//   return res.redirect(
+//     `${frontendCallbackUrl}?access_token=${encodeURIComponent(tokens.access_token)}&refresh_token=${encodeURIComponent(tokens.refresh_token)}`
+//   );
+// }
+@Get('google/callback')
+@UseGuards(GoogleAuthGuard)
+async googleAuthCallback(@Req() req: any, @Res() res: Response) {
+  const result = await this.authService.login(req.user);   // returns { access_token, refresh_token, user }
+
+  return res.redirect(
+    `http://localhost:3000/auth/callback?` +
+    `access_token=${encodeURIComponent(result.access_token)}&` +
+    `refresh_token=${encodeURIComponent(result.refresh_token)}&` +
+    `user=${encodeURIComponent(JSON.stringify(result.user))}`
+  );
+}
   @Post('logout')
   @HttpCode(200)
   async logout() {

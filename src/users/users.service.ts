@@ -80,7 +80,7 @@ async findByGoogleId(googleId: string) {
         name: data.name,
         googleId: data.googleId,
         avatarUrl: data.avatar,
-        password: null,
+        passwordHash: null,
       },
     });
   }

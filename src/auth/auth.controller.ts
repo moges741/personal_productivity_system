@@ -1,6 +1,7 @@
 import {
   Controller,
   Post,
+  Get,
   HttpCode,
   UseGuards,
   Req,
@@ -9,7 +10,7 @@ import { AuthService } from './auth.service.js';
 import { Public } from './decorators/public.decorator.js';
 import { AuthGuard } from '@nestjs/passport';
 import type { Request } from 'express';
-
+import { GoogleAuthGuard } from './guards/google-auth.guard.js';
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
@@ -53,7 +54,18 @@ export class AuthController {
       user:         result.user,
     };
   }
+@Get('google')
+  @UseGuards(GoogleAuthGuard)
+  googleAuth() {
+    // Passport handles the redirect to Google
+  }
 
+  @Get('google/callback')
+  @UseGuards(GoogleAuthGuard)
+  async googleAuthCallback(@Req() req: any) {
+    // Reuses your existing JWT + refresh token logic (no duplication)
+    return this.authService.login(req.user); // returns { access_token, refresh_token, user }
+  }
   @Post('logout')
   @HttpCode(200)
   async logout() {

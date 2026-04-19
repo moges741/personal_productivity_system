@@ -9,10 +9,14 @@ import { JwtStrategy } from './strategies/jwt.strategy.js';
 import { RefreshStrategy } from './strategies/refresh.strategy.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 import { UsersService } from '../users/users.service.js'; // assume you have it
+import { GoogleStrategy } from './strategies/google.strategy.js';
+import { GoogleAuthGuard } from './guards/google-auth.guard.js';  
+import { UsersModule } from '../users/users.module.js';
 @Module({
   imports:[
     ConfigModule,
     PassportModule,
+    UsersModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -29,6 +33,8 @@ import { UsersService } from '../users/users.service.js'; // assume you have it
     LocalStrategy,
     JwtStrategy,
     RefreshStrategy,
+    GoogleAuthGuard,
+    GoogleStrategy
   ],
   controllers: [AuthController],
   exports: [AuthService, JwtStrategy]

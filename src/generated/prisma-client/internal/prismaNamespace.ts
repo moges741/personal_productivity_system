@@ -1272,14 +1272,14 @@ export const UserScalarFieldEnum = {
   email: 'email',
   passwordHash: 'passwordHash',
   name: 'name',
-  googleId: 'googleId',
   avatarUrl: 'avatarUrl',
   timezone: 'timezone',
   preferences: 'preferences',
   isVerified: 'isVerified',
   lastLoginAt: 'lastLoginAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  googleId: 'googleId'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -1338,10 +1338,10 @@ export const TaskScalarFieldEnum = {
   isPinned: 'isPinned',
   isArchived: 'isArchived',
   isDeleted: 'isDeleted',
-  color: 'color',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  userId: 'userId'
+  userId: 'userId',
+  color: 'color'
 } as const
 
 export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]

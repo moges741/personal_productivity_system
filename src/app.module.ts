@@ -11,7 +11,6 @@ import { GoalsModule } from './goals/goals.module.js';
 import { CalendarEventsModule } from './calendar-events/calendar-events.module.js';
 import { HealthController } from './health.controller.js';
 
-
 @Module({
   imports: [
     ConfigModule.forRoot({

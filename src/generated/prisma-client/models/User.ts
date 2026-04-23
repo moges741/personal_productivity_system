@@ -29,13 +29,13 @@ export type UserMinAggregateOutputType = {
   email: string | null
   passwordHash: string | null
   name: string | null
-  googleId: string | null
   avatarUrl: string | null
   timezone: string | null
   isVerified: boolean | null
   lastLoginAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
+  googleId: string | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -43,13 +43,13 @@ export type UserMaxAggregateOutputType = {
   email: string | null
   passwordHash: string | null
   name: string | null
-  googleId: string | null
   avatarUrl: string | null
   timezone: string | null
   isVerified: boolean | null
   lastLoginAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
+  googleId: string | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -57,7 +57,6 @@ export type UserCountAggregateOutputType = {
   email: number
   passwordHash: number
   name: number
-  googleId: number
   avatarUrl: number
   timezone: number
   preferences: number
@@ -65,6 +64,7 @@ export type UserCountAggregateOutputType = {
   lastLoginAt: number
   createdAt: number
   updatedAt: number
+  googleId: number
   _all: number
 }
 
@@ -74,13 +74,13 @@ export type UserMinAggregateInputType = {
   email?: true
   passwordHash?: true
   name?: true
-  googleId?: true
   avatarUrl?: true
   timezone?: true
   isVerified?: true
   lastLoginAt?: true
   createdAt?: true
   updatedAt?: true
+  googleId?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -88,13 +88,13 @@ export type UserMaxAggregateInputType = {
   email?: true
   passwordHash?: true
   name?: true
-  googleId?: true
   avatarUrl?: true
   timezone?: true
   isVerified?: true
   lastLoginAt?: true
   createdAt?: true
   updatedAt?: true
+  googleId?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -102,7 +102,6 @@ export type UserCountAggregateInputType = {
   email?: true
   passwordHash?: true
   name?: true
-  googleId?: true
   avatarUrl?: true
   timezone?: true
   preferences?: true
@@ -110,6 +109,7 @@ export type UserCountAggregateInputType = {
   lastLoginAt?: true
   createdAt?: true
   updatedAt?: true
+  googleId?: true
   _all?: true
 }
 
@@ -190,7 +190,6 @@ export type UserGroupByOutputType = {
   email: string
   passwordHash: string | null
   name: string | null
-  googleId: string | null
   avatarUrl: string | null
   timezone: string
   preferences: runtime.JsonValue
@@ -198,6 +197,7 @@ export type UserGroupByOutputType = {
   lastLoginAt: Date | null
   createdAt: Date
   updatedAt: Date
+  googleId: string | null
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -226,7 +226,6 @@ export type UserWhereInput = {
   email?: Prisma.StringFilter<"User"> | string
   passwordHash?: Prisma.StringNullableFilter<"User"> | string | null
   name?: Prisma.StringNullableFilter<"User"> | string | null
-  googleId?: Prisma.StringNullableFilter<"User"> | string | null
   avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
   timezone?: Prisma.StringFilter<"User"> | string
   preferences?: Prisma.JsonFilter<"User">
@@ -234,12 +233,13 @@ export type UserWhereInput = {
   lastLoginAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  refreshTokens?: Prisma.RefreshTokenListRelationFilter
+  googleId?: Prisma.StringNullableFilter<"User"> | string | null
+  calendarEvents?: Prisma.CalendarEventListRelationFilter
+  goals?: Prisma.GoalListRelationFilter
+  habits?: Prisma.HabitListRelationFilter
   tasks?: Prisma.TaskListRelationFilter
   notes?: Prisma.NoteListRelationFilter
-  habits?: Prisma.HabitListRelationFilter
-  goals?: Prisma.GoalListRelationFilter
-  calendarEvents?: Prisma.CalendarEventListRelationFilter
+  refreshTokens?: Prisma.XOR<Prisma.RefreshTokenNullableScalarRelationFilter, Prisma.RefreshTokenWhereInput> | null
 }
 
 export type UserOrderByWithRelationInput = {
@@ -247,7 +247,6 @@ export type UserOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
-  googleId?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   timezone?: Prisma.SortOrder
   preferences?: Prisma.SortOrder
@@ -255,12 +254,13 @@ export type UserOrderByWithRelationInput = {
   lastLoginAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  refreshTokens?: Prisma.RefreshTokenOrderByRelationAggregateInput
+  googleId?: Prisma.SortOrderInput | Prisma.SortOrder
+  calendarEvents?: Prisma.CalendarEventOrderByRelationAggregateInput
+  goals?: Prisma.GoalOrderByRelationAggregateInput
+  habits?: Prisma.HabitOrderByRelationAggregateInput
   tasks?: Prisma.TaskOrderByRelationAggregateInput
   notes?: Prisma.NoteOrderByRelationAggregateInput
-  habits?: Prisma.HabitOrderByRelationAggregateInput
-  goals?: Prisma.GoalOrderByRelationAggregateInput
-  calendarEvents?: Prisma.CalendarEventOrderByRelationAggregateInput
+  refreshTokens?: Prisma.RefreshTokenOrderByWithRelationInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -279,12 +279,12 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   lastLoginAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  refreshTokens?: Prisma.RefreshTokenListRelationFilter
+  calendarEvents?: Prisma.CalendarEventListRelationFilter
+  goals?: Prisma.GoalListRelationFilter
+  habits?: Prisma.HabitListRelationFilter
   tasks?: Prisma.TaskListRelationFilter
   notes?: Prisma.NoteListRelationFilter
-  habits?: Prisma.HabitListRelationFilter
-  goals?: Prisma.GoalListRelationFilter
-  calendarEvents?: Prisma.CalendarEventListRelationFilter
+  refreshTokens?: Prisma.XOR<Prisma.RefreshTokenNullableScalarRelationFilter, Prisma.RefreshTokenWhereInput> | null
 }, "id" | "email" | "googleId">
 
 export type UserOrderByWithAggregationInput = {
@@ -292,7 +292,6 @@ export type UserOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
-  googleId?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   timezone?: Prisma.SortOrder
   preferences?: Prisma.SortOrder
@@ -300,6 +299,7 @@ export type UserOrderByWithAggregationInput = {
   lastLoginAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  googleId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -313,7 +313,6 @@ export type UserScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   passwordHash?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  googleId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   avatarUrl?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   timezone?: Prisma.StringWithAggregatesFilter<"User"> | string
   preferences?: Prisma.JsonWithAggregatesFilter<"User">
@@ -321,6 +320,7 @@ export type UserScalarWhereWithAggregatesInput = {
   lastLoginAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  googleId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
 }
 
 export type UserCreateInput = {
@@ -328,7 +328,6 @@ export type UserCreateInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
-  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -336,12 +335,13 @@ export type UserCreateInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  googleId?: string | null
+  calendarEvents?: Prisma.CalendarEventCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  habits?: Prisma.HabitCreateNestedManyWithoutUserInput
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteCreateNestedManyWithoutOwnerInput
-  habits?: Prisma.HabitCreateNestedManyWithoutUserInput
-  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
-  calendarEvents?: Prisma.CalendarEventCreateNestedManyWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -349,7 +349,6 @@ export type UserUncheckedCreateInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
-  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -357,12 +356,13 @@ export type UserUncheckedCreateInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  googleId?: string | null
+  calendarEvents?: Prisma.CalendarEventUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutOwnerInput
-  habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
-  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
-  calendarEvents?: Prisma.CalendarEventUncheckedCreateNestedManyWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -370,7 +370,6 @@ export type UserUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -378,12 +377,13 @@ export type UserUpdateInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendarEvents?: Prisma.CalendarEventUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUpdateManyWithoutOwnerNestedInput
-  habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
-  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
-  calendarEvents?: Prisma.CalendarEventUpdateManyWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -391,7 +391,6 @@ export type UserUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -399,12 +398,13 @@ export type UserUncheckedUpdateInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendarEvents?: Prisma.CalendarEventUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUncheckedUpdateManyWithoutOwnerNestedInput
-  habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
-  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
-  calendarEvents?: Prisma.CalendarEventUncheckedUpdateManyWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -412,7 +412,6 @@ export type UserCreateManyInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
-  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -420,6 +419,7 @@ export type UserCreateManyInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  googleId?: string | null
 }
 
 export type UserUpdateManyMutationInput = {
@@ -427,7 +427,6 @@ export type UserUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -435,6 +434,7 @@ export type UserUpdateManyMutationInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -442,7 +442,6 @@ export type UserUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -450,6 +449,7 @@ export type UserUncheckedUpdateManyInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -457,7 +457,6 @@ export type UserCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  googleId?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   timezone?: Prisma.SortOrder
   preferences?: Prisma.SortOrder
@@ -465,6 +464,7 @@ export type UserCountOrderByAggregateInput = {
   lastLoginAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  googleId?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -472,13 +472,13 @@ export type UserMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  googleId?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   timezone?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   lastLoginAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  googleId?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -486,13 +486,13 @@ export type UserMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  googleId?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   timezone?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   lastLoginAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  googleId?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -609,7 +609,6 @@ export type UserCreateWithoutRefreshTokensInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
-  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -617,11 +616,12 @@ export type UserCreateWithoutRefreshTokensInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  googleId?: string | null
+  calendarEvents?: Prisma.CalendarEventCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  habits?: Prisma.HabitCreateNestedManyWithoutUserInput
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteCreateNestedManyWithoutOwnerInput
-  habits?: Prisma.HabitCreateNestedManyWithoutUserInput
-  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
-  calendarEvents?: Prisma.CalendarEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRefreshTokensInput = {
@@ -629,7 +629,6 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
-  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -637,11 +636,12 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  googleId?: string | null
+  calendarEvents?: Prisma.CalendarEventUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutOwnerInput
-  habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
-  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
-  calendarEvents?: Prisma.CalendarEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRefreshTokensInput = {
@@ -665,7 +665,6 @@ export type UserUpdateWithoutRefreshTokensInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -673,11 +672,12 @@ export type UserUpdateWithoutRefreshTokensInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendarEvents?: Prisma.CalendarEventUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUpdateManyWithoutOwnerNestedInput
-  habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
-  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
-  calendarEvents?: Prisma.CalendarEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRefreshTokensInput = {
@@ -685,7 +685,6 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -693,11 +692,12 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendarEvents?: Prisma.CalendarEventUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUncheckedUpdateManyWithoutOwnerNestedInput
-  habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
-  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
-  calendarEvents?: Prisma.CalendarEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotesInput = {
@@ -705,7 +705,6 @@ export type UserCreateWithoutNotesInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
-  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -713,11 +712,12 @@ export type UserCreateWithoutNotesInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
-  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
-  habits?: Prisma.HabitCreateNestedManyWithoutUserInput
-  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  googleId?: string | null
   calendarEvents?: Prisma.CalendarEventCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  habits?: Prisma.HabitCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotesInput = {
@@ -725,7 +725,6 @@ export type UserUncheckedCreateWithoutNotesInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
-  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -733,11 +732,12 @@ export type UserUncheckedCreateWithoutNotesInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
-  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
-  habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
-  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  googleId?: string | null
   calendarEvents?: Prisma.CalendarEventUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotesInput = {
@@ -761,7 +761,6 @@ export type UserUpdateWithoutNotesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -769,11 +768,12 @@ export type UserUpdateWithoutNotesInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
-  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
-  habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
-  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calendarEvents?: Prisma.CalendarEventUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotesInput = {
@@ -781,7 +781,6 @@ export type UserUncheckedUpdateWithoutNotesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -789,11 +788,12 @@ export type UserUncheckedUpdateWithoutNotesInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
-  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
-  habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
-  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calendarEvents?: Prisma.CalendarEventUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTasksInput = {
@@ -801,7 +801,6 @@ export type UserCreateWithoutTasksInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
-  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -809,11 +808,12 @@ export type UserCreateWithoutTasksInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
-  notes?: Prisma.NoteCreateNestedManyWithoutOwnerInput
-  habits?: Prisma.HabitCreateNestedManyWithoutUserInput
-  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  googleId?: string | null
   calendarEvents?: Prisma.CalendarEventCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  habits?: Prisma.HabitCreateNestedManyWithoutUserInput
+  notes?: Prisma.NoteCreateNestedManyWithoutOwnerInput
+  refreshTokens?: Prisma.RefreshTokenCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTasksInput = {
@@ -821,7 +821,6 @@ export type UserUncheckedCreateWithoutTasksInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
-  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -829,11 +828,12 @@ export type UserUncheckedCreateWithoutTasksInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
-  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutOwnerInput
-  habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
-  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  googleId?: string | null
   calendarEvents?: Prisma.CalendarEventUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutOwnerInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTasksInput = {
@@ -857,7 +857,6 @@ export type UserUpdateWithoutTasksInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -865,11 +864,12 @@ export type UserUpdateWithoutTasksInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
-  notes?: Prisma.NoteUpdateManyWithoutOwnerNestedInput
-  habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
-  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calendarEvents?: Prisma.CalendarEventUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutOwnerNestedInput
+  refreshTokens?: Prisma.RefreshTokenUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTasksInput = {
@@ -877,7 +877,6 @@ export type UserUncheckedUpdateWithoutTasksInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -885,11 +884,12 @@ export type UserUncheckedUpdateWithoutTasksInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
-  notes?: Prisma.NoteUncheckedUpdateManyWithoutOwnerNestedInput
-  habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
-  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calendarEvents?: Prisma.CalendarEventUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutOwnerNestedInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutHabitsInput = {
@@ -897,7 +897,6 @@ export type UserCreateWithoutHabitsInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
-  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -905,11 +904,12 @@ export type UserCreateWithoutHabitsInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  googleId?: string | null
+  calendarEvents?: Prisma.CalendarEventCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteCreateNestedManyWithoutOwnerInput
-  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
-  calendarEvents?: Prisma.CalendarEventCreateNestedManyWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutHabitsInput = {
@@ -917,7 +917,6 @@ export type UserUncheckedCreateWithoutHabitsInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
-  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -925,11 +924,12 @@ export type UserUncheckedCreateWithoutHabitsInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  googleId?: string | null
+  calendarEvents?: Prisma.CalendarEventUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutOwnerInput
-  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
-  calendarEvents?: Prisma.CalendarEventUncheckedCreateNestedManyWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutHabitsInput = {
@@ -953,7 +953,6 @@ export type UserUpdateWithoutHabitsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -961,11 +960,12 @@ export type UserUpdateWithoutHabitsInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendarEvents?: Prisma.CalendarEventUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUpdateManyWithoutOwnerNestedInput
-  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
-  calendarEvents?: Prisma.CalendarEventUpdateManyWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutHabitsInput = {
@@ -973,7 +973,6 @@ export type UserUncheckedUpdateWithoutHabitsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -981,11 +980,12 @@ export type UserUncheckedUpdateWithoutHabitsInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendarEvents?: Prisma.CalendarEventUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUncheckedUpdateManyWithoutOwnerNestedInput
-  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
-  calendarEvents?: Prisma.CalendarEventUncheckedUpdateManyWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutGoalsInput = {
@@ -993,7 +993,6 @@ export type UserCreateWithoutGoalsInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
-  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -1001,11 +1000,12 @@ export type UserCreateWithoutGoalsInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  googleId?: string | null
+  calendarEvents?: Prisma.CalendarEventCreateNestedManyWithoutUserInput
+  habits?: Prisma.HabitCreateNestedManyWithoutUserInput
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteCreateNestedManyWithoutOwnerInput
-  habits?: Prisma.HabitCreateNestedManyWithoutUserInput
-  calendarEvents?: Prisma.CalendarEventCreateNestedManyWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutGoalsInput = {
@@ -1013,7 +1013,6 @@ export type UserUncheckedCreateWithoutGoalsInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
-  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -1021,11 +1020,12 @@ export type UserUncheckedCreateWithoutGoalsInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  googleId?: string | null
+  calendarEvents?: Prisma.CalendarEventUncheckedCreateNestedManyWithoutUserInput
+  habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutOwnerInput
-  habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
-  calendarEvents?: Prisma.CalendarEventUncheckedCreateNestedManyWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutGoalsInput = {
@@ -1049,7 +1049,6 @@ export type UserUpdateWithoutGoalsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -1057,11 +1056,12 @@ export type UserUpdateWithoutGoalsInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendarEvents?: Prisma.CalendarEventUpdateManyWithoutUserNestedInput
+  habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUpdateManyWithoutOwnerNestedInput
-  habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
-  calendarEvents?: Prisma.CalendarEventUpdateManyWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutGoalsInput = {
@@ -1069,7 +1069,6 @@ export type UserUncheckedUpdateWithoutGoalsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -1077,11 +1076,12 @@ export type UserUncheckedUpdateWithoutGoalsInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendarEvents?: Prisma.CalendarEventUncheckedUpdateManyWithoutUserNestedInput
+  habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUncheckedUpdateManyWithoutOwnerNestedInput
-  habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
-  calendarEvents?: Prisma.CalendarEventUncheckedUpdateManyWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCalendarEventsInput = {
@@ -1089,7 +1089,6 @@ export type UserCreateWithoutCalendarEventsInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
-  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -1097,11 +1096,12 @@ export type UserCreateWithoutCalendarEventsInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  googleId?: string | null
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  habits?: Prisma.HabitCreateNestedManyWithoutUserInput
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteCreateNestedManyWithoutOwnerInput
-  habits?: Prisma.HabitCreateNestedManyWithoutUserInput
-  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCalendarEventsInput = {
@@ -1109,7 +1109,6 @@ export type UserUncheckedCreateWithoutCalendarEventsInput = {
   email: string
   passwordHash?: string | null
   name?: string | null
-  googleId?: string | null
   avatarUrl?: string | null
   timezone?: string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -1117,11 +1116,12 @@ export type UserUncheckedCreateWithoutCalendarEventsInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  googleId?: string | null
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutOwnerInput
-  habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
-  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCalendarEventsInput = {
@@ -1145,7 +1145,6 @@ export type UserUpdateWithoutCalendarEventsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -1153,11 +1152,12 @@ export type UserUpdateWithoutCalendarEventsInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUpdateManyWithoutOwnerNestedInput
-  habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
-  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCalendarEventsInput = {
@@ -1165,7 +1165,6 @@ export type UserUncheckedUpdateWithoutCalendarEventsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   preferences?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -1173,11 +1172,12 @@ export type UserUncheckedUpdateWithoutCalendarEventsInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUncheckedUpdateManyWithoutOwnerNestedInput
-  habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
-  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateOneWithoutUserNestedInput
 }
 
 
@@ -1186,21 +1186,19 @@ export type UserUncheckedUpdateWithoutCalendarEventsInput = {
  */
 
 export type UserCountOutputType = {
-  refreshTokens: number
+  calendarEvents: number
+  goals: number
+  habits: number
   tasks: number
   notes: number
-  habits: number
-  goals: number
-  calendarEvents: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  refreshTokens?: boolean | UserCountOutputTypeCountRefreshTokensArgs
+  calendarEvents?: boolean | UserCountOutputTypeCountCalendarEventsArgs
+  goals?: boolean | UserCountOutputTypeCountGoalsArgs
+  habits?: boolean | UserCountOutputTypeCountHabitsArgs
   tasks?: boolean | UserCountOutputTypeCountTasksArgs
   notes?: boolean | UserCountOutputTypeCountNotesArgs
-  habits?: boolean | UserCountOutputTypeCountHabitsArgs
-  goals?: boolean | UserCountOutputTypeCountGoalsArgs
-  calendarEvents?: boolean | UserCountOutputTypeCountCalendarEventsArgs
 }
 
 /**
@@ -1216,8 +1214,22 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountRefreshTokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.RefreshTokenWhereInput
+export type UserCountOutputTypeCountCalendarEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CalendarEventWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountGoalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GoalWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountHabitsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.HabitWhereInput
 }
 
 /**
@@ -1234,34 +1246,12 @@ export type UserCountOutputTypeCountNotesArgs<ExtArgs extends runtime.Types.Exte
   where?: Prisma.NoteWhereInput
 }
 
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountHabitsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.HabitWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountGoalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.GoalWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountCalendarEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CalendarEventWhereInput
-}
-
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   email?: boolean
   passwordHash?: boolean
   name?: boolean
-  googleId?: boolean
   avatarUrl?: boolean
   timezone?: boolean
   preferences?: boolean
@@ -1269,12 +1259,13 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   lastLoginAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  refreshTokens?: boolean | Prisma.User$refreshTokensArgs<ExtArgs>
+  googleId?: boolean
+  calendarEvents?: boolean | Prisma.User$calendarEventsArgs<ExtArgs>
+  goals?: boolean | Prisma.User$goalsArgs<ExtArgs>
+  habits?: boolean | Prisma.User$habitsArgs<ExtArgs>
   tasks?: boolean | Prisma.User$tasksArgs<ExtArgs>
   notes?: boolean | Prisma.User$notesArgs<ExtArgs>
-  habits?: boolean | Prisma.User$habitsArgs<ExtArgs>
-  goals?: boolean | Prisma.User$goalsArgs<ExtArgs>
-  calendarEvents?: boolean | Prisma.User$calendarEventsArgs<ExtArgs>
+  refreshTokens?: boolean | Prisma.User$refreshTokensArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1283,7 +1274,6 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   passwordHash?: boolean
   name?: boolean
-  googleId?: boolean
   avatarUrl?: boolean
   timezone?: boolean
   preferences?: boolean
@@ -1291,6 +1281,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   lastLoginAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  googleId?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1298,7 +1289,6 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   passwordHash?: boolean
   name?: boolean
-  googleId?: boolean
   avatarUrl?: boolean
   timezone?: boolean
   preferences?: boolean
@@ -1306,6 +1296,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   lastLoginAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  googleId?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -1313,7 +1304,6 @@ export type UserSelectScalar = {
   email?: boolean
   passwordHash?: boolean
   name?: boolean
-  googleId?: boolean
   avatarUrl?: boolean
   timezone?: boolean
   preferences?: boolean
@@ -1321,16 +1311,17 @@ export type UserSelectScalar = {
   lastLoginAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  googleId?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "passwordHash" | "name" | "googleId" | "avatarUrl" | "timezone" | "preferences" | "isVerified" | "lastLoginAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "passwordHash" | "name" | "avatarUrl" | "timezone" | "preferences" | "isVerified" | "lastLoginAt" | "createdAt" | "updatedAt" | "googleId", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  refreshTokens?: boolean | Prisma.User$refreshTokensArgs<ExtArgs>
+  calendarEvents?: boolean | Prisma.User$calendarEventsArgs<ExtArgs>
+  goals?: boolean | Prisma.User$goalsArgs<ExtArgs>
+  habits?: boolean | Prisma.User$habitsArgs<ExtArgs>
   tasks?: boolean | Prisma.User$tasksArgs<ExtArgs>
   notes?: boolean | Prisma.User$notesArgs<ExtArgs>
-  habits?: boolean | Prisma.User$habitsArgs<ExtArgs>
-  goals?: boolean | Prisma.User$goalsArgs<ExtArgs>
-  calendarEvents?: boolean | Prisma.User$calendarEventsArgs<ExtArgs>
+  refreshTokens?: boolean | Prisma.User$refreshTokensArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1339,19 +1330,18 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    refreshTokens: Prisma.$RefreshTokenPayload<ExtArgs>[]
+    calendarEvents: Prisma.$CalendarEventPayload<ExtArgs>[]
+    goals: Prisma.$GoalPayload<ExtArgs>[]
+    habits: Prisma.$HabitPayload<ExtArgs>[]
     tasks: Prisma.$TaskPayload<ExtArgs>[]
     notes: Prisma.$NotePayload<ExtArgs>[]
-    habits: Prisma.$HabitPayload<ExtArgs>[]
-    goals: Prisma.$GoalPayload<ExtArgs>[]
-    calendarEvents: Prisma.$CalendarEventPayload<ExtArgs>[]
+    refreshTokens: Prisma.$RefreshTokenPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     email: string
     passwordHash: string | null
     name: string | null
-    googleId: string | null
     avatarUrl: string | null
     timezone: string
     preferences: runtime.JsonValue
@@ -1359,6 +1349,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     lastLoginAt: Date | null
     createdAt: Date
     updatedAt: Date
+    googleId: string | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1753,12 +1744,12 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  refreshTokens<T extends Prisma.User$refreshTokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$refreshTokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  calendarEvents<T extends Prisma.User$calendarEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$calendarEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CalendarEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  goals<T extends Prisma.User$goalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$goalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GoalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  habits<T extends Prisma.User$habitsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$habitsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HabitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tasks<T extends Prisma.User$tasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notes<T extends Prisma.User$notesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  habits<T extends Prisma.User$habitsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$habitsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HabitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  goals<T extends Prisma.User$goalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$goalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GoalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  calendarEvents<T extends Prisma.User$calendarEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$calendarEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CalendarEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  refreshTokens<T extends Prisma.User$refreshTokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$refreshTokensArgs<ExtArgs>>): Prisma.Prisma__RefreshTokenClient<runtime.Types.Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1792,7 +1783,6 @@ export interface UserFieldRefs {
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly passwordHash: Prisma.FieldRef<"User", 'String'>
   readonly name: Prisma.FieldRef<"User", 'String'>
-  readonly googleId: Prisma.FieldRef<"User", 'String'>
   readonly avatarUrl: Prisma.FieldRef<"User", 'String'>
   readonly timezone: Prisma.FieldRef<"User", 'String'>
   readonly preferences: Prisma.FieldRef<"User", 'Json'>
@@ -1800,6 +1790,7 @@ export interface UserFieldRefs {
   readonly lastLoginAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly googleId: Prisma.FieldRef<"User", 'String'>
 }
     
 
@@ -2193,27 +2184,75 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.refreshTokens
+ * User.calendarEvents
  */
-export type User$refreshTokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$calendarEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the RefreshToken
+   * Select specific fields to fetch from the CalendarEvent
    */
-  select?: Prisma.RefreshTokenSelect<ExtArgs> | null
+  select?: Prisma.CalendarEventSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the RefreshToken
+   * Omit specific fields from the CalendarEvent
    */
-  omit?: Prisma.RefreshTokenOmit<ExtArgs> | null
+  omit?: Prisma.CalendarEventOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.RefreshTokenInclude<ExtArgs> | null
-  where?: Prisma.RefreshTokenWhereInput
-  orderBy?: Prisma.RefreshTokenOrderByWithRelationInput | Prisma.RefreshTokenOrderByWithRelationInput[]
-  cursor?: Prisma.RefreshTokenWhereUniqueInput
+  include?: Prisma.CalendarEventInclude<ExtArgs> | null
+  where?: Prisma.CalendarEventWhereInput
+  orderBy?: Prisma.CalendarEventOrderByWithRelationInput | Prisma.CalendarEventOrderByWithRelationInput[]
+  cursor?: Prisma.CalendarEventWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.RefreshTokenScalarFieldEnum | Prisma.RefreshTokenScalarFieldEnum[]
+  distinct?: Prisma.CalendarEventScalarFieldEnum | Prisma.CalendarEventScalarFieldEnum[]
+}
+
+/**
+ * User.goals
+ */
+export type User$goalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Goal
+   */
+  select?: Prisma.GoalSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Goal
+   */
+  omit?: Prisma.GoalOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GoalInclude<ExtArgs> | null
+  where?: Prisma.GoalWhereInput
+  orderBy?: Prisma.GoalOrderByWithRelationInput | Prisma.GoalOrderByWithRelationInput[]
+  cursor?: Prisma.GoalWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GoalScalarFieldEnum | Prisma.GoalScalarFieldEnum[]
+}
+
+/**
+ * User.habits
+ */
+export type User$habitsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Habit
+   */
+  select?: Prisma.HabitSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Habit
+   */
+  omit?: Prisma.HabitOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HabitInclude<ExtArgs> | null
+  where?: Prisma.HabitWhereInput
+  orderBy?: Prisma.HabitOrderByWithRelationInput | Prisma.HabitOrderByWithRelationInput[]
+  cursor?: Prisma.HabitWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.HabitScalarFieldEnum | Prisma.HabitScalarFieldEnum[]
 }
 
 /**
@@ -2265,75 +2304,22 @@ export type User$notesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
 }
 
 /**
- * User.habits
+ * User.refreshTokens
  */
-export type User$habitsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$refreshTokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Habit
+   * Select specific fields to fetch from the RefreshToken
    */
-  select?: Prisma.HabitSelect<ExtArgs> | null
+  select?: Prisma.RefreshTokenSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Habit
+   * Omit specific fields from the RefreshToken
    */
-  omit?: Prisma.HabitOmit<ExtArgs> | null
+  omit?: Prisma.RefreshTokenOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.HabitInclude<ExtArgs> | null
-  where?: Prisma.HabitWhereInput
-  orderBy?: Prisma.HabitOrderByWithRelationInput | Prisma.HabitOrderByWithRelationInput[]
-  cursor?: Prisma.HabitWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.HabitScalarFieldEnum | Prisma.HabitScalarFieldEnum[]
-}
-
-/**
- * User.goals
- */
-export type User$goalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Goal
-   */
-  select?: Prisma.GoalSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Goal
-   */
-  omit?: Prisma.GoalOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.GoalInclude<ExtArgs> | null
-  where?: Prisma.GoalWhereInput
-  orderBy?: Prisma.GoalOrderByWithRelationInput | Prisma.GoalOrderByWithRelationInput[]
-  cursor?: Prisma.GoalWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.GoalScalarFieldEnum | Prisma.GoalScalarFieldEnum[]
-}
-
-/**
- * User.calendarEvents
- */
-export type User$calendarEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the CalendarEvent
-   */
-  select?: Prisma.CalendarEventSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the CalendarEvent
-   */
-  omit?: Prisma.CalendarEventOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CalendarEventInclude<ExtArgs> | null
-  where?: Prisma.CalendarEventWhereInput
-  orderBy?: Prisma.CalendarEventOrderByWithRelationInput | Prisma.CalendarEventOrderByWithRelationInput[]
-  cursor?: Prisma.CalendarEventWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CalendarEventScalarFieldEnum | Prisma.CalendarEventScalarFieldEnum[]
+  include?: Prisma.RefreshTokenInclude<ExtArgs> | null
+  where?: Prisma.RefreshTokenWhereInput
 }
 
 /**

@@ -34,10 +34,10 @@ export type TaskMinAggregateOutputType = {
   isPinned: boolean | null
   isArchived: boolean | null
   isDeleted: boolean | null
-  color: string | null
   createdAt: Date | null
   updatedAt: Date | null
   userId: string | null
+  color: string | null
 }
 
 export type TaskMaxAggregateOutputType = {
@@ -50,10 +50,10 @@ export type TaskMaxAggregateOutputType = {
   isPinned: boolean | null
   isArchived: boolean | null
   isDeleted: boolean | null
-  color: string | null
   createdAt: Date | null
   updatedAt: Date | null
   userId: string | null
+  color: string | null
 }
 
 export type TaskCountAggregateOutputType = {
@@ -66,10 +66,10 @@ export type TaskCountAggregateOutputType = {
   isPinned: number
   isArchived: number
   isDeleted: number
-  color: number
   createdAt: number
   updatedAt: number
   userId: number
+  color: number
   _all: number
 }
 
@@ -84,10 +84,10 @@ export type TaskMinAggregateInputType = {
   isPinned?: true
   isArchived?: true
   isDeleted?: true
-  color?: true
   createdAt?: true
   updatedAt?: true
   userId?: true
+  color?: true
 }
 
 export type TaskMaxAggregateInputType = {
@@ -100,10 +100,10 @@ export type TaskMaxAggregateInputType = {
   isPinned?: true
   isArchived?: true
   isDeleted?: true
-  color?: true
   createdAt?: true
   updatedAt?: true
   userId?: true
+  color?: true
 }
 
 export type TaskCountAggregateInputType = {
@@ -116,10 +116,10 @@ export type TaskCountAggregateInputType = {
   isPinned?: true
   isArchived?: true
   isDeleted?: true
-  color?: true
   createdAt?: true
   updatedAt?: true
   userId?: true
+  color?: true
   _all?: true
 }
 
@@ -205,10 +205,10 @@ export type TaskGroupByOutputType = {
   isPinned: boolean
   isArchived: boolean
   isDeleted: boolean
-  color: string | null
   createdAt: Date
   updatedAt: Date
   userId: string
+  color: string | null
   _count: TaskCountAggregateOutputType | null
   _min: TaskMinAggregateOutputType | null
   _max: TaskMaxAggregateOutputType | null
@@ -242,10 +242,10 @@ export type TaskWhereInput = {
   isPinned?: Prisma.BoolFilter<"Task"> | boolean
   isArchived?: Prisma.BoolFilter<"Task"> | boolean
   isDeleted?: Prisma.BoolFilter<"Task"> | boolean
-  color?: Prisma.StringNullableFilter<"Task"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Task"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Task"> | Date | string
   userId?: Prisma.StringFilter<"Task"> | string
+  color?: Prisma.StringNullableFilter<"Task"> | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
@@ -259,10 +259,10 @@ export type TaskOrderByWithRelationInput = {
   isPinned?: Prisma.SortOrder
   isArchived?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
-  color?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  color?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
 }
 
@@ -279,10 +279,10 @@ export type TaskWhereUniqueInput = Prisma.AtLeast<{
   isPinned?: Prisma.BoolFilter<"Task"> | boolean
   isArchived?: Prisma.BoolFilter<"Task"> | boolean
   isDeleted?: Prisma.BoolFilter<"Task"> | boolean
-  color?: Prisma.StringNullableFilter<"Task"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Task"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Task"> | Date | string
   userId?: Prisma.StringFilter<"Task"> | string
+  color?: Prisma.StringNullableFilter<"Task"> | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
@@ -296,10 +296,10 @@ export type TaskOrderByWithAggregationInput = {
   isPinned?: Prisma.SortOrder
   isArchived?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
-  color?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  color?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.TaskCountOrderByAggregateInput
   _max?: Prisma.TaskMaxOrderByAggregateInput
   _min?: Prisma.TaskMinOrderByAggregateInput
@@ -318,10 +318,10 @@ export type TaskScalarWhereWithAggregatesInput = {
   isPinned?: Prisma.BoolWithAggregatesFilter<"Task"> | boolean
   isArchived?: Prisma.BoolWithAggregatesFilter<"Task"> | boolean
   isDeleted?: Prisma.BoolWithAggregatesFilter<"Task"> | boolean
-  color?: Prisma.StringNullableWithAggregatesFilter<"Task"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Task"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Task"> | Date | string
   userId?: Prisma.StringWithAggregatesFilter<"Task"> | string
+  color?: Prisma.StringNullableWithAggregatesFilter<"Task"> | string | null
 }
 
 export type TaskCreateInput = {
@@ -334,9 +334,9 @@ export type TaskCreateInput = {
   isPinned?: boolean
   isArchived?: boolean
   isDeleted?: boolean
-  color?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  color?: string | null
   user: Prisma.UserCreateNestedOneWithoutTasksInput
 }
 
@@ -350,10 +350,10 @@ export type TaskUncheckedCreateInput = {
   isPinned?: boolean
   isArchived?: boolean
   isDeleted?: boolean
-  color?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
+  color?: string | null
 }
 
 export type TaskUpdateInput = {
@@ -366,9 +366,9 @@ export type TaskUpdateInput = {
   isPinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutTasksNestedInput
 }
 
@@ -382,10 +382,10 @@ export type TaskUncheckedUpdateInput = {
   isPinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TaskCreateManyInput = {
@@ -398,10 +398,10 @@ export type TaskCreateManyInput = {
   isPinned?: boolean
   isArchived?: boolean
   isDeleted?: boolean
-  color?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
+  color?: string | null
 }
 
 export type TaskUpdateManyMutationInput = {
@@ -414,9 +414,9 @@ export type TaskUpdateManyMutationInput = {
   isPinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TaskUncheckedUpdateManyInput = {
@@ -429,10 +429,10 @@ export type TaskUncheckedUpdateManyInput = {
   isPinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TaskListRelationFilter = {
@@ -455,10 +455,10 @@ export type TaskCountOrderByAggregateInput = {
   isPinned?: Prisma.SortOrder
   isArchived?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
-  color?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  color?: Prisma.SortOrder
 }
 
 export type TaskMaxOrderByAggregateInput = {
@@ -471,10 +471,10 @@ export type TaskMaxOrderByAggregateInput = {
   isPinned?: Prisma.SortOrder
   isArchived?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
-  color?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  color?: Prisma.SortOrder
 }
 
 export type TaskMinOrderByAggregateInput = {
@@ -487,10 +487,10 @@ export type TaskMinOrderByAggregateInput = {
   isPinned?: Prisma.SortOrder
   isArchived?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
-  color?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  color?: Prisma.SortOrder
 }
 
 export type TaskCreateNestedManyWithoutUserInput = {
@@ -553,9 +553,9 @@ export type TaskCreateWithoutUserInput = {
   isPinned?: boolean
   isArchived?: boolean
   isDeleted?: boolean
-  color?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  color?: string | null
 }
 
 export type TaskUncheckedCreateWithoutUserInput = {
@@ -568,9 +568,9 @@ export type TaskUncheckedCreateWithoutUserInput = {
   isPinned?: boolean
   isArchived?: boolean
   isDeleted?: boolean
-  color?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  color?: string | null
 }
 
 export type TaskCreateOrConnectWithoutUserInput = {
@@ -612,10 +612,10 @@ export type TaskScalarWhereInput = {
   isPinned?: Prisma.BoolFilter<"Task"> | boolean
   isArchived?: Prisma.BoolFilter<"Task"> | boolean
   isDeleted?: Prisma.BoolFilter<"Task"> | boolean
-  color?: Prisma.StringNullableFilter<"Task"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Task"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Task"> | Date | string
   userId?: Prisma.StringFilter<"Task"> | string
+  color?: Prisma.StringNullableFilter<"Task"> | string | null
 }
 
 export type TaskCreateManyUserInput = {
@@ -628,9 +628,9 @@ export type TaskCreateManyUserInput = {
   isPinned?: boolean
   isArchived?: boolean
   isDeleted?: boolean
-  color?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  color?: string | null
 }
 
 export type TaskUpdateWithoutUserInput = {
@@ -643,9 +643,9 @@ export type TaskUpdateWithoutUserInput = {
   isPinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TaskUncheckedUpdateWithoutUserInput = {
@@ -658,9 +658,9 @@ export type TaskUncheckedUpdateWithoutUserInput = {
   isPinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TaskUncheckedUpdateManyWithoutUserInput = {
@@ -673,9 +673,9 @@ export type TaskUncheckedUpdateManyWithoutUserInput = {
   isPinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -690,10 +690,10 @@ export type TaskSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   isPinned?: boolean
   isArchived?: boolean
   isDeleted?: boolean
-  color?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   userId?: boolean
+  color?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["task"]>
 
@@ -707,10 +707,10 @@ export type TaskSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   isPinned?: boolean
   isArchived?: boolean
   isDeleted?: boolean
-  color?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   userId?: boolean
+  color?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["task"]>
 
@@ -724,10 +724,10 @@ export type TaskSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   isPinned?: boolean
   isArchived?: boolean
   isDeleted?: boolean
-  color?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   userId?: boolean
+  color?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["task"]>
 
@@ -741,13 +741,13 @@ export type TaskSelectScalar = {
   isPinned?: boolean
   isArchived?: boolean
   isDeleted?: boolean
-  color?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   userId?: boolean
+  color?: boolean
 }
 
-export type TaskOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "status" | "priority" | "dueDate" | "isPinned" | "isArchived" | "isDeleted" | "color" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["task"]>
+export type TaskOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "status" | "priority" | "dueDate" | "isPinned" | "isArchived" | "isDeleted" | "createdAt" | "updatedAt" | "userId" | "color", ExtArgs["result"]["task"]>
 export type TaskInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -773,10 +773,10 @@ export type $TaskPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     isPinned: boolean
     isArchived: boolean
     isDeleted: boolean
-    color: string | null
     createdAt: Date
     updatedAt: Date
     userId: string
+    color: string | null
   }, ExtArgs["result"]["task"]>
   composites: {}
 }
@@ -1210,10 +1210,10 @@ export interface TaskFieldRefs {
   readonly isPinned: Prisma.FieldRef<"Task", 'Boolean'>
   readonly isArchived: Prisma.FieldRef<"Task", 'Boolean'>
   readonly isDeleted: Prisma.FieldRef<"Task", 'Boolean'>
-  readonly color: Prisma.FieldRef<"Task", 'String'>
   readonly createdAt: Prisma.FieldRef<"Task", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Task", 'DateTime'>
   readonly userId: Prisma.FieldRef<"Task", 'String'>
+  readonly color: Prisma.FieldRef<"Task", 'String'>
 }
     
 

@@ -1,66 +1,61 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma-client"
+  moduleFormat = "esm"
+}
+
 datasource db {
   provider = "postgresql"
 }
 
-generator client {
-  provider = "prisma-client"                  
-  output   = "../src/generated/prisma-client"  
-  moduleFormat = "esm"                             
-}
-
 model User {
-  id              String   @id @default(cuid())
-  email           String   @unique
-  passwordHash    String?  
-  name            String?
-  googleId  String?  @unique
-  avatarUrl       String?
-  timezone        String   @default("UTC")
-  preferences     Json     @default("{}")   
-  isVerified      Boolean  @default(false)
-  lastLoginAt     DateTime?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-
-  refreshTokens   RefreshToken[]
-  tasks           Task[]
-  notes           Note[]
-  habits          Habit[]
-  goals           Goal[]
-  calendarEvents  CalendarEvent[]
+  id             String          @id @default(cuid())
+  email          String          @unique
+  passwordHash   String?
+  name           String?
+  avatarUrl      String?
+  timezone       String          @default("UTC")
+  preferences    Json            @default("{}")
+  isVerified     Boolean         @default(false)
+  lastLoginAt    DateTime?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  googleId       String?         @unique
+  calendarEvents CalendarEvent[]
+  goals          Goal[]
+  habits         Habit[]
+  tasks          Task[]
+  notes          Note[]
+  refreshTokens  RefreshToken?
 
   @@index([email])
   @@map("users")
 }
 
 model RefreshToken {
-  id        String   @id @default(cuid())
+  id          String   @id @default(cuid())
   hashedToken String
-  userId    String
-  expiresAt DateTime
-  createdAt DateTime @default(now())
+  userId      String   @unique
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([userId])
   @@map("refresh_tokens")
 }
+
 model Note {
-  id         String   @id @default(cuid())
-  title      String?
-  content    String?
-  color      String?  @default("#ffffff")
-  isPinned   Boolean  @default(false)
-  isArchived Boolean  @default(false)
-  isDeleted  Boolean  @default(false)
-
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
-  ownerId    String
-  owner      User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-
+  id          String       @id @default(cuid())
+  title       String?
+  content     String?
+  color       String?      @default("#ffffff")
+  isPinned    Boolean      @default(false)
+  isArchived  Boolean      @default(false)
+  isDeleted   Boolean      @default(false)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  ownerId     String
   attachments Attachment[]
+  owner       User         @relation(fields: [ownerId], references: [id], onDelete: Cascade)
 
   @@index([ownerId])
   @@index([isPinned])
@@ -78,16 +73,130 @@ model Attachment {
   path         String
   url          String?
   noteId       String
-
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-
-  note         Note @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  note         Note     @relation(fields: [noteId], references: [id], onDelete: Cascade)
 
   @@index([noteId])
   @@map("attachments")
 }
 
+model Task {
+  id          String       @id @default(cuid())
+  title       String
+  description String?
+  status      TaskStatus   @default(todo)
+  priority    TaskPriority @default(medium)
+  dueDate     DateTime?
+  isPinned    Boolean      @default(false)
+  isArchived  Boolean      @default(false)
+  isDeleted   Boolean      @default(false)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  userId      String
+  color       String?      @default("default")
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Habit {
+  id              String            @id @default(cuid())
+  name            String
+  description     String?
+  frequency       HabitFrequency    @default(daily)
+  customDays      Int[]             @default([])
+  targetCount     Int               @default(1)
+  currentStreak   Int               @default(0)
+  bestStreak      Int               @default(0)
+  reminderTime    String?
+  color           String            @default("#6366f1")
+  icon            String?
+  category        HabitCategory     @default(other)
+  lastCompletedAt DateTime?
+  isArchived      Boolean           @default(false)
+  isDeleted       Boolean           @default(false)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  userId          String
+  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  completions     HabitCompletion[]
+}
+
+model HabitCompletion {
+  id          String   @id @default(cuid())
+  completedAt DateTime @default(now())
+  note        String?
+  habitId     String
+  habit       Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade)
+}
+
+model Goal {
+  id                 String              @id @default(cuid())
+  title              String
+  description        String?
+  category           GoalCategory        @default(other)
+  status             GoalStatus          @default(not_started)
+  priority           GoalPriority        @default(medium)
+  progressPercentage Int                 @default(0)
+  startDate          DateTime?
+  targetDate         DateTime?
+  completedAt        DateTime?
+  abandonedAt        DateTime?
+  isPinned           Boolean             @default(false)
+  isArchived         Boolean             @default(false)
+  isDeleted          Boolean             @default(false)
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  userId             String
+  user               User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  milestones         GoalMilestone[]
+  progressHistory    GoalProgressEntry[]
+}
+
+model GoalMilestone {
+  id          String    @id @default(cuid())
+  title       String
+  isCompleted Boolean   @default(false)
+  dueDate     DateTime?
+  order       Int       @default(0)
+  goalId      String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  goal        Goal      @relation(fields: [goalId], references: [id], onDelete: Cascade)
+}
+
+model GoalProgressEntry {
+  id         String   @id @default(cuid())
+  percentage Int
+  note       String?
+  goalId     String
+  createdAt  DateTime @default(now())
+  goal       Goal     @relation(fields: [goalId], references: [id], onDelete: Cascade)
+}
+
+model CalendarEvent {
+  id                    String        @id @default(cuid())
+  title                 String
+  description           String?
+  location              String?
+  startDateTime         DateTime
+  endDateTime           DateTime
+  isAllDay              Boolean       @default(false)
+  isRecurring           Boolean       @default(false)
+  recurrenceRule        String?
+  color                 String?       @default("#3b82f6")
+  status                EventStatus   @default(confirmed)
+  category              EventCategory @default(other)
+  reminderMinutesBefore Int?
+  linkedTaskId          String?
+  linkedGoalId          String?
+  isPinned              Boolean       @default(false)
+  isArchived            Boolean       @default(false)
+  isDeleted             Boolean       @default(false)
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @updatedAt
+  userId                String
+  user                  User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
 
 enum TaskStatus {
   todo
@@ -101,28 +210,10 @@ enum TaskPriority {
   high
 }
 
-model Task {
-  id          String       @id @default(cuid())
-  title       String
-  description String?
-  status      TaskStatus   @default(todo)
-  priority    TaskPriority @default(medium)
-  dueDate     DateTime?
-  isPinned    Boolean      @default(false)
-  isArchived  Boolean      @default(false)
-  isDeleted   Boolean      @default(false)
-  color     String?  @default("default")
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-
-  userId      String
-  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
 enum HabitFrequency {
   daily
   weekly
-  custom   
+  custom
 }
 
 enum HabitCategory {
@@ -135,49 +226,6 @@ enum HabitCategory {
   social
   creativity
   other
-}
-
-model Habit {
-  id              String         @id @default(cuid())
-  name            String
-  description     String?
-
-  frequency       HabitFrequency @default(daily)
-
-  customDays      Int[]          @default([])
-
-  targetCount     Int            @default(1)    
-  currentStreak   Int            @default(0)
-  bestStreak      Int            @default(0)
-
-  reminderTime    String?
-
-  color           String         @default("#6366f1")  
-  icon            String?        
-  category        HabitCategory  @default(other)
-
-  lastCompletedAt DateTime?
-  isArchived      Boolean        @default(false)
-  isDeleted       Boolean        @default(false)
-
-  createdAt       DateTime       @default(now())
-  updatedAt       DateTime       @updatedAt
-
-  userId          String
-  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  // Future: completions history table will relate here
-  completions     HabitCompletion[]
-}
-
-// ── HabitCompletion model (add now, use later) ──────
-model HabitCompletion {
-  id          String   @id @default(cuid())
-  completedAt DateTime @default(now())
-  note        String?  // optional "how did it go?" note
-
-  habitId     String
-  habit       Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade)
 }
 
 enum GoalCategory {
@@ -202,112 +250,16 @@ enum GoalPriority {
   high
 }
 
-model Goal {
-  id                 String        @id @default(cuid())
-  title              String
-  description        String?
-
-  category           GoalCategory  @default(other)
-  status             GoalStatus    @default(not_started)
-  priority           GoalPriority  @default(medium)
-
-  // 0–100 — updated manually or auto-calculated from linked tasks/habits later
-  progressPercentage Int           @default(0)
-
-  startDate          DateTime?     
-  targetDate         DateTime?    
-
-  // Timestamps for status transitions — set automatically in service
-  completedAt        DateTime?     
-  abandonedAt        DateTime?     
-
-  isPinned           Boolean       @default(false)
-  isArchived         Boolean       @default(false)
-  isDeleted          Boolean       @default(false)
-
-  createdAt          DateTime      @default(now())
-  updatedAt          DateTime      @updatedAt
-
-  userId             String
-  user               User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  // ── Future relations (defined now, endpoints added later) ───────────────
-  milestones         GoalMilestone[]
-  progressHistory    GoalProgressEntry[]
-}
-
-model GoalMilestone {
-  id          String   @id @default(cuid())
-  title       String
-  isCompleted Boolean  @default(false)
-  dueDate     DateTime?
-  order       Int      @default(0)   
-
-  goalId      String
-  goal        Goal     @relation(fields: [goalId], references: [id], onDelete: Cascade)
-
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model GoalProgressEntry {
-  id         String   @id @default(cuid())
-  percentage Int      
-  note       String?  
-
-  goalId     String
-  goal       Goal     @relation(fields: [goalId], references: [id], onDelete: Cascade)
-
-  createdAt  DateTime @default(now())
-}
-
 enum EventStatus {
-  tentative    
-  confirmed    
-  cancelled    
+  tentative
+  confirmed
+  cancelled
 }
+
 enum EventCategory {
   personal
   work
   health
   family
   other
-}
-model CalendarEvent {
-  id          String        @id @default(cuid())
-  title       String
-  description String?
-  location    String?       
-
-  
-  startDateTime DateTime
-  endDateTime   DateTime
-
-  
-  isAllDay      Boolean  @default(false)
-
-
-  isRecurring     Boolean @default(false)
-  recurrenceRule  String? // null when isRecurring = false
-
-  color           String?       @default("#3b82f6")
-  status          EventStatus   @default(confirmed)
-  category        EventCategory @default(other)
-
-  
-  reminderMinutesBefore Int?
-
-
-  linkedTaskId  String?
-  linkedGoalId  String?
-
-  isPinned    Boolean  @default(false)
-  isArchived  Boolean  @default(false)
-  isDeleted   Boolean  @default(false)
-
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  userId  String
-  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

@@ -113,7 +113,7 @@ async googleAuthCallback(@Req() req: Request, @Res() res: Response) {
   );
 
   // Build the frontend callback URL with all tokens in query params
-  const frontendUrl = process.env.FRONTEND_URL ?? "http://localhost:3000";
+  const frontendUrl = process.env.FRONTEND_URL ?? "https://my-daily-tools.vercel.app";
 
   const redirectUrl =
     `${frontendUrl}/auth/callback` +
